@@ -1,0 +1,41 @@
+@use 'sass:color' as color;
+
+.modal {
+  &__container {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: color.scale(#000, $alpha: -70%);
+    display: grid;
+    place-items: center;
+  }
+
+  &__box {
+    max-height: 98vh;
+    width: min(480px, 95vw);
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: -2px 3px 4px rgba(0, 0, 0, 0.25);
+    position: relative;
+    display: flex;
+  }
+
+  &__close-btn {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    display: flex;
+  }
+
+  &__content {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+}

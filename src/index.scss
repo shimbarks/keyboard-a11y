@@ -6,14 +6,32 @@
   box-sizing: border-box;
 }
 
-html {
+html,
+body,
+#root {
   height: 100%;
 }
 
 body {
   margin: 0;
-  min-height: 100%;
-  overflow-y: auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a,
+label,
+select,
+button,
+input[type='button'],
+input[type='reset'],
+input[type='submit'],
+input[type='radio'],
+input[type='checkbox'],
+[role='button'],
+[role='checkbox'],
+[role='radio'] {
+  &:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 /* Focus styles */
