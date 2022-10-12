@@ -1,0 +1,28 @@
+/* Basic styles */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  overflow-y: auto;
+}
+
+/* Focus styles */
+
+*:focus:not(:focus-visible) {
+  outline-color: transparent;
+}
+
+*:focus-visible {
+  outline: 2px dotted currentColor;
+  outline-offset: 0.4em;
+}
