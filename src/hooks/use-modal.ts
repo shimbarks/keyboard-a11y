@@ -1,6 +1,5 @@
-import { ReactEventHandler, RefObject, useCallback } from 'react';
+import { ReactEventHandler, RefObject, useCallback, useEffect } from 'react';
 import { keyboardTrap } from '../utils/dom.utils';
-import { useUpdateEffect } from './use-update-effect';
 
 export interface UseModalProps {
   modalRef: RefObject<HTMLElement>;
@@ -26,7 +25,7 @@ export const useModal = ({
     keyListenerMap[event.code]?.(event);
   }, []);
 
-  useUpdateEffect(() => {
+  useEffect(() => {
     if (isOpen) {
       modalRef.current?.addEventListener('keydown', keyListener); // apply exit upon 'Esc' and keyboard focus trapping while modal is visible
       firstFocusableRef.current?.focus(); // shift focus into the modal when it opens
