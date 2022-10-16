@@ -45,6 +45,7 @@ export const Modal: React.FC<ModalProps> = ({
       className="modal__container"
       role="dialog"
       aria-modal="true"
+      aria-label="modal-dialog"
     >
       <div className="modal__box">
         <button type="button" className="modal__close-btn" onClick={onClose}>
