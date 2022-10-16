@@ -17,12 +17,8 @@ export const useModal = ({
   isOpen,
   onClose,
 }: UseModalProps) => {
-  const onEscape: ReactEventHandler = (event) => {
-    onClose(event);
-  };
-
   const keyListenerMap: { [key: string]: (e: any) => void } = {
-    Escape: onEscape,
+    Escape: (e) => onClose(e),
     Tab: (e) => keyboardTrap(e, modalRef),
   };
 
