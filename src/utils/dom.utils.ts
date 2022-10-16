@@ -31,6 +31,13 @@ export function getFocusableElements(
   return container.querySelectorAll(focusableQuery);
 }
 
+export function getFirstFocusableElement(
+  containerElement?: HTMLElement,
+): HTMLElement | null {
+  const container = containerElement ?? document;
+  return container.querySelector(focusableQuery);
+}
+
 const focusableSelectors = ['a', 'button', 'textarea', 'input', 'select'];
 
 const focusableQuery = `${focusableSelectors.join(

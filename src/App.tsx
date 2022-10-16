@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './App.scss';
 import { Modal } from './components/modal/Modal';
 
 export const App: React.FC = () => {
   const [firstModalVisible, setFirstModalVisible] = useState<boolean>(false);
   const [secondModalVisible, setSecondModalVisible] = useState<boolean>(false);
+  const openSecondModalButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
     <main className="app__main">
@@ -15,8 +16,9 @@ export const App: React.FC = () => {
         Other Button
       </button>
       <Modal
-        open={firstModalVisible}
+        isOpen={firstModalVisible}
         onClose={() => setFirstModalVisible(false)}
+        onOpenFocusRef={openSecondModalButtonRef}
       >
         <header>My First Modal</header>
         <div>
@@ -27,13 +29,16 @@ export const App: React.FC = () => {
         </div>
         <footer className="modal__footer">
           <a href="#">Fake Link</a>
-          <button onClick={() => setSecondModalVisible(true)}>
+          <button
+            ref={openSecondModalButtonRef}
+            onClick={() => setSecondModalVisible(true)}
+          >
             Open Second Modal
           </button>
         </footer>
       </Modal>
       <Modal
-        open={secondModalVisible}
+        isOpen={secondModalVisible}
         onClose={() => setSecondModalVisible(false)}
       >
         <header>My Second Modal</header>

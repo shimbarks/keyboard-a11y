@@ -1,6 +1,7 @@
 import React, {
   MouseEventHandler,
   ReactNode,
+  RefObject,
   useEffect,
   useRef,
   useState,
@@ -9,31 +10,36 @@ import { useModal } from '../../hooks/use-modal';
 import './Modal.scss';
 
 export interface ModalProps {
-  open: boolean;
+  isOpen: boolean;
   onClose: MouseEventHandler<HTMLElement>;
+  onOpenFocusRef?: RefObject<HTMLElement>;
   children?: ReactNode;
 }
 
-export const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
+export const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  onOpenFocusRef,
+  children,
+}) => {
   const modalRef = useRef<HTMLDivElement>(null);
-  const closeRef = useRef<HTMLButtonElement>(null);
   const [openerElement, setOpenerElement] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (open) {
+    if (isOpen) {
       setOpenerElement(document.activeElement as HTMLElement);
     }
-  }, [open]);
+  }, [isOpen]);
 
   useModal({
     modalRef,
     openerRef: { current: openerElement },
-    firstFocusableRef: closeRef,
-    isOpen: open,
-    onClose: onClose,
+    isOpen,
+    onClose,
+    onOpenFocusRef,
   });
 
-  return open ? (
+  return isOpen ? (
     <div
       ref={modalRef}
       className="modal__container"
@@ -41,12 +47,7 @@ export const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
       aria-modal="true"
     >
       <div className="modal__box">
-        <button
-          ref={closeRef}
-          type="button"
-          className="modal__close-btn"
-          onClick={onClose}
-        >
+        <button type="button" className="modal__close-btn" onClick={onClose}>
           X
         </button>
         <div className="modal__content">{children}</div>
