@@ -6,6 +6,7 @@ export const App: React.FC = () => {
   const [firstModalVisible, setFirstModalVisible] = useState<boolean>(false);
   const [secondModalVisible, setSecondModalVisible] = useState<boolean>(false);
   const openSecondModalButtonRef = useRef<HTMLButtonElement>(null);
+  const firstCloseButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
     <main className="app__main">
@@ -19,6 +20,15 @@ export const App: React.FC = () => {
         isOpen={firstModalVisible}
         onClose={() => setFirstModalVisible(false)}
         onOpenFocusRef={openSecondModalButtonRef}
+        closeButton={
+          <button
+            ref={firstCloseButtonRef}
+            type="button"
+            onClick={() => setFirstModalVisible(false)}
+          >
+            X
+          </button>
+        }
       >
         <header>My First Modal</header>
         <div>
@@ -40,6 +50,12 @@ export const App: React.FC = () => {
       <Modal
         isOpen={secondModalVisible}
         onClose={() => setSecondModalVisible(false)}
+        onCloseFocusRef={firstCloseButtonRef}
+        closeButton={
+          <button type="button" onClick={() => setSecondModalVisible(false)}>
+            X
+          </button>
+        }
       >
         <header>My Second Modal</header>
         <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>

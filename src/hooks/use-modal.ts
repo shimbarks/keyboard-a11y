@@ -1,31 +1,42 @@
-import { ReactEventHandler, RefObject, useCallback, useEffect } from 'react';
+import {
+  MutableRefObject,
+  ReactEventHandler,
+  RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+} from 'react';
 import { getFirstFocusableElement, keyboardTrap } from '../utils/dom.utils';
 
 export interface UseModalProps {
-  modalRef: RefObject<HTMLElement>;
-  openerRef: RefObject<HTMLElement>;
   isOpen: boolean;
   onClose: ReactEventHandler;
+  modalRef: RefObject<HTMLElement>;
   onOpenFocusRef?: RefObject<HTMLElement>;
+  onCloseFocusRef?: RefObject<HTMLElement>;
 }
 
 export const useModal = ({
-  modalRef,
-  openerRef,
-  onOpenFocusRef,
   isOpen,
   onClose,
+  modalRef,
+  onOpenFocusRef,
+  onCloseFocusRef,
 }: UseModalProps) => {
+  const openerRef: MutableRefObject<HTMLElement | null> =
+    useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      openerRef.current = document.activeElement as HTMLElement;
+    }
+  }, [isOpen]);
+
   const getOnOpenFocusElement = (): HTMLElement | null => {
-    if (onOpenFocusRef) {
-      return onOpenFocusRef.current;
-    }
-
-    if (modalRef.current) {
-      return getFirstFocusableElement(modalRef.current);
-    }
-
-    return null;
+    return (
+      onOpenFocusRef?.current ??
+      (modalRef.current ? getFirstFocusableElement(modalRef.current) : null)
+    );
   };
 
   const keyListenerMap: { [key: string]: (e: any) => void } = {
@@ -42,8 +53,8 @@ export const useModal = ({
       modalRef.current?.addEventListener('keydown', keyListener); // apply exit upon 'Esc' and keyboard focus trapping while modal is visible
       getOnOpenFocusElement()?.focus(); // shift focus into the modal when it opens
     } else {
-      modalRef.current?.removeEventListener('keydown', keyListener); // stop listening to 'Esc' while modal is hidden
-      openerRef.current?.focus(); // restore focus to the opener element when the modal is closed
+      modalRef.current?.removeEventListener('keydown', keyListener); // stop listening to 'Esc' and 'Tab' while modal is hidden
+      (onCloseFocusRef ?? openerRef).current?.focus(); // shift focus to outside of the modal when the it closes
     }
   }, [isOpen]);
 };
