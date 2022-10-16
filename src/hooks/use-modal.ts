@@ -1,5 +1,4 @@
-import { ReactEventHandler, RefObject, useCallback, useContext } from 'react';
-import { uiContext } from '../contexts/ui.context';
+import { ReactEventHandler, RefObject, useCallback } from 'react';
 import { keyboardTrap } from '../utils/dom.utils';
 import { useUpdateEffect } from './use-update-effect';
 
@@ -18,12 +17,8 @@ export const useModal = ({
   isOpen,
   onClose,
 }: UseModalProps) => {
-  const { activeModals } = useContext(uiContext);
-
   const onEscape: ReactEventHandler = (event) => {
-    if (activeModals.at(-1) === modalRef) {
-      onClose(event);
-    }
+    onClose(event);
   };
 
   const keyListenerMap: { [key: string]: (e: any) => void } = {
@@ -37,12 +32,10 @@ export const useModal = ({
 
   useUpdateEffect(() => {
     if (isOpen) {
-      activeModals.push(modalRef);
-      document.addEventListener('keydown', keyListener); // apply exit upon 'Esc' and keyboard focus trapping while modal is visible
+      modalRef.current?.addEventListener('keydown', keyListener); // apply exit upon 'Esc' and keyboard focus trapping while modal is visible
       firstFocusableRef.current?.focus(); // shift focus into the modal when it opens
     } else {
-      activeModals.pop();
-      document.removeEventListener('keydown', keyListener); // stop listening to 'Esc' while modal is hidden
+      modalRef.current?.removeEventListener('keydown', keyListener); // stop listening to 'Esc' while modal is hidden
       openerRef.current?.focus(); // restore focus to the opener element when the modal is closed
     }
   }, [isOpen]);
