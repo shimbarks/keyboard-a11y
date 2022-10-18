@@ -26,12 +26,6 @@ export const useModal = ({
   const openerRef: MutableRefObject<HTMLElement | null> =
     useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    if (isOpen) {
-      openerRef.current = document.activeElement as HTMLElement;
-    }
-  }, [isOpen]);
-
   const getOnOpenFocusElement = (): HTMLElement | null => {
     return (
       onOpenFocusRef?.current ??
@@ -50,6 +44,7 @@ export const useModal = ({
 
   useEffect(() => {
     if (isOpen) {
+      openerRef.current = document.activeElement as HTMLElement;
       modalRef.current?.addEventListener('keydown', keyListener); // apply exit upon 'Esc' and keyboard focus trapping while modal is visible
       getOnOpenFocusElement()?.focus(); // shift focus into the modal when it opens
     } else {
