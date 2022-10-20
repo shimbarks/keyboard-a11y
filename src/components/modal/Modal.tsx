@@ -5,7 +5,7 @@ import React, {
   RefObject,
   useRef,
 } from 'react';
-import { useModal } from '../../hooks/use-modal';
+import { useModal1 } from '../../hooks/use-modal-1';
 import './Modal.scss';
 
 export interface ModalProps {
@@ -27,7 +27,7 @@ export const Modal: React.FC<ModalProps> = ({
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  useModal({
+  useModal1({
     isOpen,
     onClose,
     modalRef,

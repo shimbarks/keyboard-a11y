@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { getFirstFocusableElement, keyboardTrap } from '../utils/dom.utils';
 
-export interface UseModalProps {
+export interface UseModal2Props {
   isOpen: boolean;
   onClose: ReactEventHandler;
   modalRef: RefObject<HTMLElement>;
@@ -16,13 +16,13 @@ export interface UseModalProps {
   onCloseFocusRef?: RefObject<HTMLElement>;
 }
 
-export const useModal = ({
+export const useModal2 = ({
   isOpen,
   onClose,
   modalRef,
   onOpenFocusRef,
   onCloseFocusRef,
-}: UseModalProps) => {
+}: UseModal2Props) => {
   const openerRef: MutableRefObject<HTMLElement | null> =
     useRef<HTMLElement>(null);
 
