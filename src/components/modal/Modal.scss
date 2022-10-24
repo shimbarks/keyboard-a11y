@@ -1,5 +1,7 @@
 @use 'sass:color' as color;
 
+$modal-transition: ease-out 0.15s;
+
 .modal {
   &__container {
     z-index: 1;
@@ -11,6 +13,17 @@
     background-color: color.scale(#000, $alpha: -70%);
     display: grid;
     place-items: center;
+    transition: $modal-transition;
+
+    &--hidden {
+      visibility: hidden;
+      opacity: 0;
+      transition-property: visibility, opacity;
+    }
+
+    &--visible {
+      transition-property: opacity;
+    }
   }
 
   &__box {
@@ -21,6 +34,11 @@
     box-shadow: -2px 3px 4px rgba(0, 0, 0, 0.25);
     position: relative;
     display: flex;
+    transition: transform $modal-transition;
+
+    &--hidden {
+      transform: scale(0.85);
+    }
   }
 
   &__close-btn {

@@ -26,6 +26,7 @@ export const Modal: React.FC<ModalProps> = ({
   closeButton,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const visibleMod = isOpen ? 'visible' : 'hidden';
 
   useModal1({
     isOpen,
@@ -35,18 +36,18 @@ export const Modal: React.FC<ModalProps> = ({
     onCloseFocusRef,
   });
 
-  return isOpen ? (
+  return (
     <div
       ref={modalRef}
-      className="modal__container"
+      className={`modal__container modal__container--${visibleMod}`}
       role="dialog"
       aria-modal="true"
       aria-label="modal-dialog"
     >
-      <div className="modal__box">
+      <div className={`modal__box modal__box--${visibleMod}`}>
         <div className="modal__close-btn">{closeButton}</div>
         <div className="modal__content">{children}</div>
       </div>
     </div>
-  ) : null;
+  );
 };
