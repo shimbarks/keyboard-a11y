@@ -1,6 +1,6 @@
 import React, {
-  MouseEventHandler,
   ReactElement,
+  ReactEventHandler,
   ReactNode,
   RefObject,
   useRef,
@@ -10,7 +10,7 @@ import './Modal.scss';
 
 export interface ModalProps {
   isOpen: boolean;
-  onClose: MouseEventHandler<HTMLElement>;
+  onClose: ReactEventHandler;
   onOpenFocusRef?: RefObject<HTMLElement>;
   onCloseFocusRef?: RefObject<HTMLElement>;
   children?: ReactNode;
