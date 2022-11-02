@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { Dialog } from '../dialog/Dialog';
-import { Modal } from '../modal/Modal';
+import { CustomModal } from '../custom-modal/CustomModal';
+import { DialogModal } from '../dialog-modal/DialogModal';
 import './ModalOpener.scss';
 
 export interface ModalOpenerProps {
@@ -84,13 +84,13 @@ export const ModalOpener: React.FC<ModalOpenerProps> = ({ implementation }) => {
       </button>
       {implementation === 'native modal dialog' ? (
         <>
-          <Dialog {...firstModalProps} />
-          <Dialog {...secondModalProps} />
+          <DialogModal {...firstModalProps} />
+          <DialogModal {...secondModalProps} />
         </>
       ) : (
         <>
-          <Modal {...firstModalProps} />
-          <Modal {...secondModalProps} />
+          <CustomModal {...firstModalProps} />
+          <CustomModal {...secondModalProps} />
         </>
       )}
     </div>

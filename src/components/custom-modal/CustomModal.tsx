@@ -6,9 +6,9 @@ import React, {
   useRef,
 } from 'react';
 import { useModal1 } from '../../hooks/use-modal-1';
-import './Modal.scss';
+import './CustomModal.scss';
 
-export interface ModalProps {
+export interface CustomModalProps {
   isOpen: boolean;
   onClose: ReactEventHandler;
   onOpenFocusRef?: RefObject<HTMLElement>;
@@ -17,7 +17,7 @@ export interface ModalProps {
   closeButton: ReactElement;
 }
 
-export const Modal: React.FC<ModalProps> = ({
+export const CustomModal: React.FC<CustomModalProps> = ({
   isOpen,
   onClose,
   onOpenFocusRef,

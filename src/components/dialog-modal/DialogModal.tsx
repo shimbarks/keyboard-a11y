@@ -8,10 +8,10 @@ import React, {
 } from 'react';
 import { useDialog } from '../../hooks/use-dialog';
 
-import '../modal/Modal.scss';
-import './Dialog.scss';
+import '../custom-modal/CustomModal.scss';
+import './DialogModal.scss';
 
-export interface DialogProps {
+export interface DialogModalProps {
   isOpen: boolean;
   onClose: ReactEventHandler;
   onOpenFocusRef?: RefObject<HTMLElement>;
@@ -20,7 +20,7 @@ export interface DialogProps {
   closeButton: ReactElement;
 }
 
-export const Dialog: React.FC<DialogProps> = ({
+export const DialogModal: React.FC<DialogModalProps> = ({
   isOpen,
   onClose,
   onOpenFocusRef,
