@@ -24,6 +24,15 @@ $modal-transition: ease-out 0.15s;
     &--visible {
       transition-property: opacity;
     }
+
+    &:focus-visible {
+      outline: none;
+
+      .modal__box {
+        outline: 2px dotted currentColor;
+        outline-offset: -4px;
+      }
+    }
   }
 
   &__box {

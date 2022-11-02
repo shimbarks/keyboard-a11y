@@ -14,10 +14,16 @@ export const useFocusOnOpen = ({
 }: UseFocusOnOpenProps): void => {
   useEffect(() => {
     if (isOpen) {
-      const elementToFocus =
-        customRef?.current ??
-        (containerRef.current &&
-          getFirstFocusableElement(containerRef.current));
+      let elementToFocus = customRef?.current;
+
+      if (!elementToFocus && containerRef.current) {
+        elementToFocus = getFirstFocusableElement(containerRef.current);
+
+        if (!elementToFocus) {
+          containerRef.current.tabIndex = -1;
+          elementToFocus = containerRef.current;
+        }
+      }
 
       elementToFocus?.focus();
     }

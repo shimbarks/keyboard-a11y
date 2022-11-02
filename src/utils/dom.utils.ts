@@ -6,6 +6,12 @@ export function keyboardTrap(
 ): void {
   if (containerRef.current) {
     const focusableElements = getFocusableElements(containerRef.current);
+
+    if (!focusableElements.length) {
+      event.preventDefault();
+      return;
+    }
+
     const firstElement = focusableElements[0];
     const lastElement = focusableElements[focusableElements.length - 1];
 

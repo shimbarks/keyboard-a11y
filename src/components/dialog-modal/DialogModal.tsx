@@ -17,7 +17,7 @@ export interface DialogModalProps {
   onOpenFocusRef?: RefObject<HTMLElement>;
   onCloseFocusRef?: RefObject<HTMLElement>;
   children?: ReactNode;
-  closeButton: ReactElement;
+  closeButton?: ReactElement;
 }
 
 export const DialogModal: React.FC<DialogModalProps> = ({

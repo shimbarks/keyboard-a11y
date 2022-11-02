@@ -10,4 +10,8 @@
   &::backdrop {
     background-color: color.scale(#000, $alpha: -70%);
   }
+
+  &:focus-visible {
+    outline-offset: -4px;
+  }
 }

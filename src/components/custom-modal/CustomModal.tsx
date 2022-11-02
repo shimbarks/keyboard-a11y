@@ -14,7 +14,7 @@ export interface CustomModalProps {
   onOpenFocusRef?: RefObject<HTMLElement>;
   onCloseFocusRef?: RefObject<HTMLElement>;
   children?: ReactNode;
-  closeButton: ReactElement;
+  closeButton?: ReactElement;
 }
 
 export const CustomModal: React.FC<CustomModalProps> = ({
