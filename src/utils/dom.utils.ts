@@ -32,20 +32,41 @@ export function keyboardTrap(
 
 export function getFocusableElements(
   containerElement?: HTMLElement,
-): NodeListOf<HTMLElement> {
+): HTMLElement[] {
   const container = containerElement ?? document;
-  return container.querySelectorAll(focusableQuery);
+  const focusableElementsQuery =
+    'a[href], button, input, textarea, select, details, iframe, embed, object, summary, dialog, audio[controls], video[controls], [contenteditable], [tabindex]:not([tabindex="-1"])';
+  const focusableElements = Array.from(
+    container.querySelectorAll<HTMLElement>(focusableElementsQuery),
+  );
+
+  return focusableElements.filter(
+    (el) =>
+      !el.hasAttribute('disabled') &&
+      !el.hasAttribute('hidden') &&
+      getComputedStyle(el).display !== 'none' &&
+      getComputedStyle(el).visibility !== 'hidden',
+  );
 }
 
 export function getFirstFocusableElement(
   containerElement?: HTMLElement,
 ): HTMLElement | null {
-  const container = containerElement ?? document;
-  return container.querySelector(focusableQuery);
+  return getFocusableElements(containerElement)[0];
 }
 
-const focusableSelectors = ['a', 'button', 'textarea', 'input', 'select'];
+export function getNextFocusableElement(
+  currentElement: HTMLElement,
+): HTMLElement | null {
+  const focusableElements = getFocusableElements();
 
-const focusableQuery = `${focusableSelectors.join(
-  ':not(:disabled), ',
-)}:not(:disabled)`;
+  for (let i = 0; i < focusableElements.length - 1; i++) {
+    const element = focusableElements[i];
+
+    if (element === currentElement) {
+      return focusableElements[i + 1];
+    }
+  }
+
+  return null;
+}

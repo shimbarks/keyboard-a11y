@@ -1,8 +1,8 @@
 import { ReactEventHandler, RefObject } from 'react';
-import { useEscapeListener } from './use-escape-listener';
 import { useFocusOnClose } from './use-focus-on-close';
 import { useFocusOnOpen } from './use-focus-on-open';
 import { useKeyboardTrap } from './use-keyboard-trap';
+import { useKeydownListener } from './use-keydown-listener';
 
 export interface UseModal1Props {
   isOpen: boolean;
@@ -30,10 +30,10 @@ export const useModal1 = ({
     customRef: onOpenFocusRef,
   });
 
-  useEscapeListener({
-    isOpen,
+  useKeydownListener({
     containerRef: modalRef,
-    callback: onClose,
+    isOpen,
+    keyListenerMap: { Escape: onClose },
   });
 
   useKeyboardTrap({

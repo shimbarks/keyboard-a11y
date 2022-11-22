@@ -8,4 +8,14 @@
     align-items: center;
     gap: 2rem;
   }
+
+  &__menu-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__fake-link {
+    margin-top: 1.4em;
+  }
 }

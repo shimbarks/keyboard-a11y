@@ -1,23 +1,19 @@
 import { RefObject, useCallback, useEffect } from 'react';
 
-export interface UseEscapeListenerProps {
-  isOpen: boolean;
+export interface UseKeydownListenerProps {
   containerRef: RefObject<HTMLElement>;
-  callback: (e: any) => void;
+  isOpen: boolean;
+  keyListenerMap: { [key: string]: (e: any) => void };
 }
 
-export const useEscapeListener = ({
-  isOpen,
+export const useKeydownListener = ({
   containerRef,
-  callback,
-}: UseEscapeListenerProps): void => {
+  isOpen,
+  keyListenerMap,
+}: UseKeydownListenerProps): void => {
   const keyListener = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.code === 'Escape') {
-        callback(event);
-      }
-    },
-    [callback],
+    (event: KeyboardEvent) => keyListenerMap[event.key]?.(event),
+    [keyListenerMap],
   );
 
   useEffect(() => {

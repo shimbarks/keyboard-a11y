@@ -1,0 +1,60 @@
+$popup-transition: 0.2s ease-out;
+
+.menu {
+  position: relative;
+
+  &__popup {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: max-content;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #878c94;
+    border-radius: 4px;
+    box-shadow: -2px 3px 4px rgba(0, 0, 0, 0.25);
+    transition: $popup-transition;
+
+    &--hidden {
+      visibility: hidden;
+      opacity: 0;
+      transition-property: transform, opacity, visibility;
+
+      &.menu__popup {
+        transform: translateY(-8px);
+      }
+    }
+
+    &--visible {
+      transition-property: transform, opacity;
+    }
+  }
+
+  &__item {
+    &:not(:last-of-type) {
+      border-bottom: 1px solid #b8bcbf;
+    }
+  }
+
+  &__item-btn {
+    width: 100%;
+    border: none;
+    padding: 18px;
+    font-size: 16px;
+    gap: 1em;
+
+    &:not(:hover),
+    &:not(:focus-visible) {
+      background-color: transparent;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background-color: #dcdfe3;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+}

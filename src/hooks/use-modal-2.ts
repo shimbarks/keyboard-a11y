@@ -39,7 +39,7 @@ export const useModal2 = ({
   };
 
   const keyListener = useCallback((event: KeyboardEvent) => {
-    keyListenerMap[event.code]?.(event);
+    keyListenerMap[event.key]?.(event);
   }, []);
 
   useEffect(() => {
