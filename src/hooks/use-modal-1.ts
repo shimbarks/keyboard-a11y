@@ -18,6 +18,8 @@ export const useModal1 = ({
   onOpenFocusRef,
   onCloseFocusRef,
 }: UseModal1Props) => {
+  // useFocusOnClose must be called before useFocusOnOpen, otherwise the focus would shift into the modal before
+  // saving the active element which needs to gain focus upon modal close
   useFocusOnClose({
     isOpen,
     customRef: onCloseFocusRef,
