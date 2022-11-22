@@ -1,13 +1,19 @@
 import React, { useRef, useState } from 'react';
-import { CustomModal } from '../custom-modal/CustomModal';
-import { DialogModal } from '../dialog-modal/DialogModal';
+import { CustomModalLoose } from '../custom-modal/CustomModalLoose';
+import { CustomModalStrict } from '../custom-modal/CustomModalStrict';
+import { DialogModalLoose } from '../dialog-modal/DialogModalLoose';
+import { DialogModalStrict } from '../dialog-modal/DialogModalStrict';
 import './ModalOpener.scss';
 
 export interface ModalOpenerProps {
   implementation: 'native modal dialog' | 'custom modal';
+  keyboardTrap: 'strict' | 'loose';
 }
 
-export const ModalOpener: React.FC<ModalOpenerProps> = ({ implementation }) => {
+export const ModalOpener: React.FC<ModalOpenerProps> = ({
+  implementation,
+  keyboardTrap,
+}) => {
   const [firstModalVisible, setFirstModalVisible] = useState<boolean>(false);
   const [secondModalVisible, setSecondModalVisible] = useState<boolean>(false);
   const openSecondModalButtonRef = useRef<HTMLButtonElement>(null);
@@ -77,22 +83,40 @@ export const ModalOpener: React.FC<ModalOpenerProps> = ({ implementation }) => {
     children: secondModalContent,
   };
 
+  const renderModal = (): JSX.Element => {
+    if (implementation === 'native modal dialog') {
+      return keyboardTrap === 'strict' ? (
+        <>
+          <DialogModalStrict {...firstModalProps} />
+          <DialogModalStrict {...secondModalProps} />
+        </>
+      ) : (
+        <>
+          <DialogModalLoose {...firstModalProps} />
+          <DialogModalLoose {...secondModalProps} />
+        </>
+      );
+    } else {
+      return keyboardTrap === 'strict' ? (
+        <>
+          <CustomModalStrict {...firstModalProps} />
+          <CustomModalStrict {...secondModalProps} />
+        </>
+      ) : (
+        <>
+          <CustomModalLoose {...firstModalProps} />
+          <CustomModalLoose {...secondModalProps} />
+        </>
+      );
+    }
+  };
+
   return (
     <div className="section">
       <button onClick={() => setFirstModalVisible(true)}>
         Open First Modal
       </button>
-      {implementation === 'native modal dialog' ? (
-        <>
-          <DialogModal {...firstModalProps} />
-          <DialogModal {...secondModalProps} />
-        </>
-      ) : (
-        <>
-          <CustomModal {...firstModalProps} />
-          <CustomModal {...secondModalProps} />
-        </>
-      )}
+      {renderModal()}
     </div>
   );
 };

@@ -1,11 +1,11 @@
-import React, {
+import {
+  ForwardedRef,
+  forwardRef,
   ReactElement,
   ReactEventHandler,
   ReactNode,
   RefObject,
-  useRef,
 } from 'react';
-import { useModal1 } from '../../hooks/use-modal-1';
 import './CustomModal.scss';
 
 export interface CustomModalProps {
@@ -17,28 +17,15 @@ export interface CustomModalProps {
   closeButton?: ReactElement;
 }
 
-export const CustomModal: React.FC<CustomModalProps> = ({
-  isOpen,
-  onClose,
-  onOpenFocusRef,
-  onCloseFocusRef,
-  children,
-  closeButton,
-}) => {
-  const modalRef = useRef<HTMLDivElement>(null);
+const CustomModalComponent = (
+  { isOpen, children, closeButton }: CustomModalProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) => {
   const visibleMod = isOpen ? 'visible' : 'hidden';
-
-  useModal1({
-    isOpen,
-    onClose,
-    modalRef,
-    onOpenFocusRef,
-    onCloseFocusRef,
-  });
 
   return (
     <div
-      ref={modalRef}
+      ref={ref}
       className={`modal__container modal__container--${visibleMod}`}
       role="dialog"
       aria-modal="true"
@@ -51,3 +38,7 @@ export const CustomModal: React.FC<CustomModalProps> = ({
     </div>
   );
 };
+
+export const CustomModal = forwardRef<HTMLDivElement, CustomModalProps>(
+  CustomModalComponent,
+);

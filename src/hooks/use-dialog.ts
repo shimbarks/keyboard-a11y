@@ -1,7 +1,6 @@
 import { RefObject, useEffect, useState } from 'react';
 import { useFocusOnClose } from './use-focus-on-close';
 import { useFocusOnOpen } from './use-focus-on-open';
-import { useKeyboardTrap } from './use-keyboard-trap';
 
 export interface UseDialogProps {
   isOpen: boolean;
@@ -41,10 +40,5 @@ export const useDialog = ({
     isOpen: delayedIsOpen,
     containerRef: dialogRef,
     customRef: onOpenFocusRef,
-  });
-
-  useKeyboardTrap({
-    isOpen,
-    containerRef: dialogRef,
   });
 };

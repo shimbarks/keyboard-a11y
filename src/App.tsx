@@ -17,15 +17,29 @@ export const App: React.FC = () => {
 
   return (
     <main className="app__main">
-      <section>
-        <h2>Native Modal Dialog:</h2>
-        <ModalOpener implementation="native modal dialog" />
+      <section className="app__modals-section">
+        <section className="app__section">
+          <h2>Native Modal Dialog</h2>
+          <i>Strict keyboard trap:</i>
+          <ModalOpener
+            implementation="native modal dialog"
+            keyboardTrap="strict"
+          />
+          <i>Loose keyboard trap:</i>
+          <ModalOpener
+            implementation="native modal dialog"
+            keyboardTrap="loose"
+          />
+        </section>
+        <section className="app__section">
+          <h2>Custom Modal</h2>
+          <i>Strict keyboard trap:</i>
+          <ModalOpener implementation="custom modal" keyboardTrap="strict" />
+          <i>Loose keyboard trap:</i>
+          <ModalOpener implementation="custom modal" keyboardTrap="loose" />
+        </section>
       </section>
-      <section>
-        <h2>Custom Modal:</h2>
-        <ModalOpener implementation="custom modal" />
-      </section>
-      <section className="app__menu-section">
+      <section className="app__section">
         <h2>Menu:</h2>
         <Menu label="Open Menu" items={menuItems} />
         <a className="app__fake-link" href="#">

@@ -1,9 +1,10 @@
-import React, {
+import {
+  ForwardedRef,
+  forwardRef,
   ReactElement,
   ReactEventHandler,
   ReactNode,
   RefObject,
-  useRef,
 } from 'react';
 import { useDialog } from '../../hooks/use-dialog';
 
@@ -19,19 +20,20 @@ export interface DialogModalProps {
   closeButton?: ReactElement;
 }
 
-export const DialogModal: React.FC<DialogModalProps> = ({
-  isOpen,
-  onClose,
-  onOpenFocusRef,
-  onCloseFocusRef,
-  children,
-  closeButton,
-}) => {
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
+const DialogModalComponent = (
+  {
+    isOpen,
+    onClose,
+    onOpenFocusRef,
+    onCloseFocusRef,
+    children,
+    closeButton,
+  }: DialogModalProps,
+  ref: ForwardedRef<HTMLDialogElement>,
+) => {
   useDialog({
     isOpen,
-    dialogRef,
+    dialogRef: ref as RefObject<HTMLDialogElement>,
     onOpenFocusRef,
     onCloseFocusRef,
   });
@@ -39,7 +41,7 @@ export const DialogModal: React.FC<DialogModalProps> = ({
   return (
     <dialog
       onCancel={onClose} // reset state upon 'Esc' keypress
-      ref={dialogRef}
+      ref={ref}
       className="dialog"
     >
       <div className="modal__close-btn">{closeButton}</div>
@@ -47,3 +49,7 @@ export const DialogModal: React.FC<DialogModalProps> = ({
     </dialog>
   );
 };
+
+export const DialogModal = forwardRef<HTMLDialogElement, DialogModalProps>(
+  DialogModalComponent,
+);

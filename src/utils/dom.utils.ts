@@ -43,6 +43,7 @@ export function getTabbableElements(
     (element) =>
       !element.hasAttribute('disabled') &&
       !element.hasAttribute('hidden') &&
+      !element.hasAttribute('inert') &&
       getComputedStyle(element).display !== 'none' &&
       getComputedStyle(element).visibility !== 'hidden',
   );
