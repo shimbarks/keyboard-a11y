@@ -3,7 +3,7 @@ import { useFocusOnClose } from '../../hooks/use-focus-on-close';
 import { useFocusOnOpen } from '../../hooks/use-focus-on-open';
 import { useKeydownListener } from '../../hooks/use-keydown-listener';
 import { useOutsideClick } from '../../hooks/use-outside-click';
-import { getNextFocusableElement } from '../../utils/dom.utils';
+import { getNextTabbableElement } from '../../utils/dom.utils';
 import './Menu.scss';
 
 export interface MenuItem {
@@ -77,7 +77,7 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
   const handlePopupTransitionEnd = () => {
     if (shouldFocusNext && openerRef.current) {
       setShouldFocusNext(false);
-      getNextFocusableElement(openerRef.current)?.focus();
+      getNextTabbableElement(openerRef.current)?.focus();
     }
   };
 

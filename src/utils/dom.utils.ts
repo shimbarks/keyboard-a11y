@@ -5,15 +5,15 @@ export function keyboardTrap(
   containerRef: RefObject<HTMLElement>,
 ): void {
   if (containerRef.current) {
-    const focusableElements = getFocusableElements(containerRef.current);
+    const tabbableElements = getTabbableElements(containerRef.current);
 
-    if (!focusableElements.length) {
+    if (!tabbableElements.length) {
       event.preventDefault();
       return;
     }
 
-    const firstElement = focusableElements[0];
-    const lastElement = focusableElements[focusableElements.length - 1];
+    const firstElement = tabbableElements[0];
+    const lastElement = tabbableElements[tabbableElements.length - 1];
 
     const isForwardFromLastElement =
       !event.shiftKey && document.activeElement === lastElement;
@@ -30,7 +30,7 @@ export function keyboardTrap(
   }
 }
 
-export function getFocusableElements(
+export function getTabbableElements(
   containerElement?: HTMLElement,
 ): HTMLElement[] {
   const container = containerElement ?? document;
@@ -39,32 +39,33 @@ export function getFocusableElements(
   const focusableElements = Array.from(
     container.querySelectorAll<HTMLElement>(focusableElementsQuery),
   );
-
-  return focusableElements.filter(
-    (el) =>
-      !el.hasAttribute('disabled') &&
-      !el.hasAttribute('hidden') &&
-      getComputedStyle(el).display !== 'none' &&
-      getComputedStyle(el).visibility !== 'hidden',
+  const tabbableElements = focusableElements.filter(
+    (element) =>
+      !element.hasAttribute('disabled') &&
+      !element.hasAttribute('hidden') &&
+      getComputedStyle(element).display !== 'none' &&
+      getComputedStyle(element).visibility !== 'hidden',
   );
+
+  return tabbableElements;
 }
 
-export function getFirstFocusableElement(
+export function getFirstTabbableElement(
   containerElement?: HTMLElement,
 ): HTMLElement | null {
-  return getFocusableElements(containerElement)[0];
+  return getTabbableElements(containerElement)[0];
 }
 
-export function getNextFocusableElement(
+export function getNextTabbableElement(
   currentElement: HTMLElement,
 ): HTMLElement | null {
-  const focusableElements = getFocusableElements();
+  const tabbableElements = getTabbableElements();
 
-  for (let i = 0; i < focusableElements.length - 1; i++) {
-    const element = focusableElements[i];
+  for (let i = 0; i < tabbableElements.length - 1; i++) {
+    const element = tabbableElements[i];
 
     if (element === currentElement) {
-      return focusableElements[i + 1];
+      return tabbableElements[i + 1];
     }
   }
 
