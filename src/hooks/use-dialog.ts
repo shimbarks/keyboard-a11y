@@ -5,7 +5,7 @@ import { useKeyboardTrap } from './use-keyboard-trap';
 
 export interface UseDialogProps {
   isOpen: boolean;
-  dialogRef: RefObject<HTMLElement>;
+  dialogRef: RefObject<HTMLDialogElement>;
   onOpenFocusRef?: RefObject<HTMLElement>;
   onCloseFocusRef?: RefObject<HTMLElement>;
 }
@@ -17,6 +17,14 @@ export const useDialog = ({
   onCloseFocusRef,
 }: UseDialogProps) => {
   const [delayedIsOpen, setDelayedIsOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      dialogRef.current?.showModal();
+    } else {
+      dialogRef.current?.close();
+    }
+  }, [isOpen, dialogRef]);
 
   // we can't manipulate focus based on isOpen since the native dialog focus behaviour overrides it,
   // so we need to use a separate state which will be set after the default focus occurs:

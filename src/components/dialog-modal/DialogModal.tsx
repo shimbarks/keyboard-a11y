@@ -3,7 +3,6 @@ import React, {
   ReactEventHandler,
   ReactNode,
   RefObject,
-  useEffect,
   useRef,
 } from 'react';
 import { useDialog } from '../../hooks/use-dialog';
@@ -29,7 +28,6 @@ export const DialogModal: React.FC<DialogModalProps> = ({
   closeButton,
 }) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
-  // const visibleMod = isOpen ? 'visible' : 'hidden';
 
   useDialog({
     isOpen,
@@ -37,14 +35,6 @@ export const DialogModal: React.FC<DialogModalProps> = ({
     onOpenFocusRef,
     onCloseFocusRef,
   });
-
-  useEffect(() => {
-    if (isOpen) {
-      dialogRef.current?.showModal();
-    } else {
-      dialogRef.current?.close();
-    }
-  }, [isOpen]);
 
   return (
     <dialog
