@@ -6,6 +6,7 @@ import {
   ReactNode,
   RefObject,
 } from 'react';
+import { createPortal } from 'react-dom';
 import './CustomModal.scss';
 
 export interface CustomModalProps {
@@ -23,7 +24,7 @@ const CustomModalComponent = (
 ) => {
   const visibleMod = isOpen ? 'visible' : 'hidden';
 
-  return (
+  return createPortal(
     <div
       ref={ref}
       className={`modal__container modal__container--${visibleMod}`}
@@ -35,7 +36,8 @@ const CustomModalComponent = (
         <div className="modal__close-btn">{closeButton}</div>
         <div className="modal__content">{children}</div>
       </div>
-    </div>
+    </div>,
+    document.getElementById('modal-root') ?? document.body,
   );
 };
 
