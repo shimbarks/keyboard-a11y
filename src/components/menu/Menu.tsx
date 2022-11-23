@@ -3,7 +3,6 @@ import { useFocusOnClose } from '../../hooks/use-focus-on-close';
 import { useFocusOnOpen } from '../../hooks/use-focus-on-open';
 import { useKeydownListener } from '../../hooks/use-keydown-listener';
 import { useOutsideClick } from '../../hooks/use-outside-click';
-import { getNextTabbableElement } from '../../utils/dom.utils';
 import './Menu.scss';
 
 export interface MenuItem {
@@ -22,7 +21,6 @@ const ITEM_ID_PREFIX = 'menu-item-';
 export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
   const popupId = useId();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [shouldFocusNext, setShouldFocusNext] = useState<boolean>(false);
   const visibleMod = isOpen ? 'visible' : 'hidden';
   const popupRef = useRef<HTMLUListElement>(null);
   const openerRef = useRef<HTMLButtonElement>(null);
@@ -67,18 +65,8 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
   const handleTabKeydown = (event: KeyboardEvent) => {
     if (event.shiftKey) {
       event.preventDefault();
-    } else {
-      setShouldFocusNext(true);
     }
-
     setIsOpen(false);
-  };
-
-  const handlePopupTransitionEnd = () => {
-    if (shouldFocusNext && openerRef.current) {
-      setShouldFocusNext(false);
-      getNextTabbableElement(openerRef.current)?.focus();
-    }
   };
 
   useKeydownListener({
@@ -96,6 +84,7 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
     return (
       <li role="none" key={item.text} className="menu__item">
         <button
+          tabIndex={-1}
           id={`${ITEM_ID_PREFIX}${index}`}
           role="menuitem"
           className="menu__item-btn"
@@ -126,7 +115,6 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
         ref={popupRef}
         role="menu"
         className={`menu__popup menu__popup--${visibleMod}`}
-        onTransitionEnd={handlePopupTransitionEnd}
       >
         {props.items.map(renderItem)}
       </ul>
