@@ -56,19 +56,3 @@ export function getFirstTabbableElement(
 ): HTMLElement | null {
   return getTabbableElements(containerElement)[0];
 }
-
-export function getNextTabbableElement(
-  currentElement: HTMLElement,
-): HTMLElement | null {
-  const tabbableElements = getTabbableElements();
-
-  for (let i = 0; i < tabbableElements.length - 1; i++) {
-    const element = tabbableElements[i];
-
-    if (element === currentElement) {
-      return tabbableElements[i + 1];
-    }
-  }
-
-  return null;
-}
