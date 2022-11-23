@@ -3,7 +3,7 @@ import { useFocusOnClose } from './use-focus-on-close';
 import { useFocusOnOpen } from './use-focus-on-open';
 import { useKeydownListener } from './use-keydown-listener';
 
-export interface UseModal1Props {
+export interface UseModalProps {
   isOpen: boolean;
   onClose: ReactEventHandler;
   modalRef: RefObject<HTMLElement>;
@@ -11,13 +11,13 @@ export interface UseModal1Props {
   onCloseFocusRef?: RefObject<HTMLElement>;
 }
 
-export const useModal1 = ({
+export const useModal = ({
   isOpen,
   onClose,
   modalRef,
   onOpenFocusRef,
   onCloseFocusRef,
-}: UseModal1Props) => {
+}: UseModalProps) => {
   // useFocusOnClose must be called before useFocusOnOpen, otherwise the focus would shift into the modal before
   // saving the active element which needs to gain focus upon modal close
   useFocusOnClose({
