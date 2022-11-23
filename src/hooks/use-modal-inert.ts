@@ -6,11 +6,11 @@ export interface UseInertProps {
 }
 
 export const useModalInert = ({ modalRef, isOpen }: UseInertProps) => {
-  const [inertElements, setInertElements] = useState<Element[]>([]);
+  const [inertedElements, setInertedElements] = useState<Element[]>([]);
 
   useEffect(() => {
     if (isOpen) {
-      // in case the current modal got inert by a different modal that is still open:
+      // in case the current modal got inerted by a different modal that is still open:
       modalRef.current?.removeAttribute('inert');
       inert();
     } else {
@@ -39,11 +39,11 @@ export const useModalInert = ({ modalRef, isOpen }: UseInertProps) => {
       element.setAttribute('inert', 'true');
     });
 
-    setInertElements(elementsToInert);
+    setInertedElements(elementsToInert);
   };
 
   const unInert = () => {
-    inertElements.forEach((element) => {
+    inertedElements.forEach((element) => {
       element.removeAttribute('inert');
     });
   };
