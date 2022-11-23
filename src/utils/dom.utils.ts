@@ -5,7 +5,10 @@ export function keyboardTrap(
   containerRef: RefObject<HTMLElement>,
 ): void {
   if (containerRef.current) {
-    const tabbableElements = getTabbableElements(containerRef.current);
+    const tabbableElements = getFocusableElements({
+      containerElement: containerRef.current,
+      tabbableOnly: true,
+    });
 
     if (!tabbableElements.length) {
       event.preventDefault();
@@ -30,16 +33,38 @@ export function keyboardTrap(
   }
 }
 
-export function getTabbableElements(
-  containerElement?: HTMLElement,
-): HTMLElement[] {
+export function getFocusableElements({
+  containerElement,
+  tabbableOnly,
+}: {
+  containerElement?: HTMLElement;
+  tabbableOnly?: boolean;
+} = {}): HTMLElement[] {
   const container = containerElement ?? document;
-  const focusableElementsQuery =
-    'a[href], button, input, textarea, select, details, iframe, embed, object, summary, dialog, audio[controls], video[controls], [contenteditable], [tabindex]:not([tabindex="-1"])';
-  const focusableElements = Array.from(
-    container.querySelectorAll<HTMLElement>(focusableElementsQuery),
+
+  const selectors = [
+    'a[href]',
+    'button',
+    'input',
+    'textarea',
+    'select',
+    'details',
+    'iframe',
+    'embed',
+    'object',
+    'summary',
+    'dialog',
+    'audio[controls]',
+    'video[controls]',
+    '[contenteditable]',
+    `[tabindex]${tabbableOnly ? ':not([tabindex="-1"])' : ''}`,
+  ];
+
+  const potentiallyFocusableElements = Array.from(
+    container.querySelectorAll<HTMLElement>(selectors.join(', ')),
   );
-  const tabbableElements = focusableElements.filter(
+
+  const focusableElements = potentiallyFocusableElements.filter(
     (element) =>
       !element.hasAttribute('disabled') &&
       !element.hasAttribute('hidden') &&
@@ -48,11 +73,5 @@ export function getTabbableElements(
       getComputedStyle(element).visibility !== 'hidden',
   );
 
-  return tabbableElements;
-}
-
-export function getFirstTabbableElement(
-  containerElement?: HTMLElement,
-): HTMLElement | null {
-  return getTabbableElements(containerElement)[0];
+  return focusableElements;
 }

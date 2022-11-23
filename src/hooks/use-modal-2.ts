@@ -6,7 +6,7 @@ import {
   useEffect,
   useRef,
 } from 'react';
-import { getFirstTabbableElement, keyboardTrap } from '../utils/dom.utils';
+import { getFocusableElements, keyboardTrap } from '../utils/dom.utils';
 
 export interface UseModal2Props {
   isOpen: boolean;
@@ -29,7 +29,9 @@ export const useModal2 = ({
   const getOnOpenFocusElement = (): HTMLElement | null => {
     return (
       onOpenFocusRef?.current ??
-      (modalRef.current ? getFirstTabbableElement(modalRef.current) : null)
+      (modalRef.current
+        ? getFocusableElements({ containerElement: modalRef.current })[0]
+        : null)
     );
   };
 

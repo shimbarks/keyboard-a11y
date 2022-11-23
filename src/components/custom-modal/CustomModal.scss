@@ -29,7 +29,7 @@ $modal-transition: ease-out 0.15s;
       outline: none;
 
       .modal__box {
-        outline: 2px dotted currentColor;
+        outline: clamp(2px, 0.2em, 6px) solid currentColor;
         outline-offset: -4px;
       }
     }

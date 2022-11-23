@@ -1,5 +1,5 @@
 import { RefObject, useEffect } from 'react';
-import { getFirstTabbableElement } from '../utils/dom.utils';
+import { getFocusableElements } from '../utils/dom.utils';
 
 export interface UseFocusOnOpenProps {
   isOpen: boolean;
@@ -17,7 +17,9 @@ export const useFocusOnOpen = ({
       let elementToFocus = customRef?.current;
 
       if (!elementToFocus && containerRef.current) {
-        elementToFocus = getFirstTabbableElement(containerRef.current);
+        elementToFocus = getFocusableElements({
+          containerElement: containerRef.current,
+        })[0];
 
         if (!elementToFocus) {
           containerRef.current.tabIndex = -1;
