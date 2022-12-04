@@ -1,0 +1,40 @@
+$sidebar-transition: 0.5s ease-out;
+$sidebar-width: 300px;
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: $sidebar-width;
+  background: rgb(219, 218, 218);
+  padding: 2em;
+  transition: margin-right $sidebar-transition;
+
+  &--open {
+    transition-property: margin-right;
+  }
+
+  &--closed {
+    transition-property: margin-right, visibility;
+    margin-right: -$sidebar-width;
+    visibility: hidden;
+  }
+
+  &__close-button {
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
+    border: none;
+    background-color: transparent;
+    transition: transform $sidebar-transition;
+
+    &--closed {
+      transform: rotate(0.25turn);
+    }
+
+    &:focus-visible {
+      outline-offset: 0px;
+    }
+  }
+}
