@@ -1,4 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react';
+import { useAutoOverflow } from '../../hooks/use-auto-overflow';
+import { useKeydownListener } from '../../hooks/use-keydown-listener';
 import './Sidebar.scss';
 
 export interface SidebarProps {
@@ -10,9 +12,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
   isSidebarOpen,
   setIsSidebarOpen,
 }) => {
-  const ref = useRef<HTMLElement>(null);
+  const sidebarRef = useRef<HTMLElement>(null);
+  const loremRef = useRef<HTMLElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const stateMod = isSidebarOpen ? 'open' : 'closed';
+
+  useKeydownListener({
+    containerRef: sidebarRef,
+    isOpen: isSidebarOpen,
+    keyListenerMap: { Escape: () => setIsSidebarOpen(false) },
+  });
 
   useEffect(() => {
     if (isSidebarOpen) {
@@ -20,8 +29,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
     }
   }, [isSidebarOpen]);
 
+  useAutoOverflow(loremRef);
+
   return (
-    <aside ref={ref} className={`sidebar sidebar--${stateMod}`}>
+    <aside ref={sidebarRef} className={`sidebar sidebar--${stateMod}`}>
       <button
         type="button"
         className={`sidebar__close-button sidebar__close-button--${stateMod}`}
@@ -32,9 +43,30 @@ export const Sidebar: React.FC<SidebarProps> = ({
       >
         X
       </button>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi sint quia
-      minima aliquam dignissimos tempore! Voluptatibus commodi nobis animi dolor
-      voluptatum non a iste quasi maxime, quaerat hic, temporibus neque.
+      <section ref={loremRef} className="sidebar__lorem">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa
+        delectus, sit beatae excepturi cum saepe sint maiores. Rem at optio
+        minus voluptates itaque. Quo, aliquam modi? A nihil sit maiores ut
+        facere dolorem omnis tempora dolorum quas, nemo eveniet eius
+        necessitatibus. Fugit dicta nesciunt sapiente sunt similique aliquid
+        placeat quas assumenda excepturi maiores aliquam ullam molestias, sed
+        veniam facere alias dignissimos tenetur et adipisci, quam enim dolores!
+        Nesciunt delectus animi possimus quo voluptatum omnis nam impedit nemo,
+        assumenda eaque dolorum dignissimos vero optio recusandae repellat,
+        incidunt exercitationem enim, commodi aut necessitatibus. Maiores ipsam
+        cumque esse autem quasi architecto soluta? Reiciendis, necessitatibus
+        numquam, ducimus, explicabo dolore vitae consectetur nemo nobis ad
+        maiores alias eaque? Obcaecati quaerat, possimus pariatur repudiandae
+        reprehenderit laborum quas voluptas molestias, fugit mollitia quam
+        nostrum repellendus omnis? Optio ipsam quaerat eos eligendi magni,
+        mollitia corrupti vero, impedit corporis a ipsa natus cupiditate autem
+        expedita voluptatibus non quod ea tempore saepe? Dolores corporis ipsam
+        labore dolor, expedita placeat? Eum saepe enim autem esse earum, quasi
+        libero et cumque explicabo, quibusdam iste blanditiis delectus labore,
+        facere sed rem distinctio odio? Ad vitae maiores nihil tempora nemo, ab
+        nobis. Porro ipsam odio beatae soluta asperiores? Iusto deleniti fugiat
+        officia neque facilis.
+      </section>
     </aside>
   );
 };

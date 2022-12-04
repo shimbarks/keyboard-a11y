@@ -9,6 +9,7 @@ $sidebar-width: 300px;
   width: $sidebar-width;
   background: rgb(219, 218, 218);
   padding: 2em;
+  display: flex;
   transition: margin-right $sidebar-transition;
 
   &--open {
@@ -36,5 +37,9 @@ $sidebar-width: 300px;
     &:focus-visible {
       outline-offset: 0px;
     }
+  }
+
+  &__lorem {
+    overflow-y: auto;
   }
 }
