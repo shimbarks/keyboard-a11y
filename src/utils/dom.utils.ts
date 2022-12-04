@@ -1,5 +1,14 @@
 import { RefObject } from 'react';
 
+export function isOverflown({
+  clientWidth,
+  clientHeight,
+  scrollWidth,
+  scrollHeight,
+}: HTMLElement) {
+  return scrollHeight > clientHeight || scrollWidth > clientWidth;
+}
+
 export function keyboardTrap(
   event: KeyboardEvent,
   containerRef: RefObject<HTMLElement>,

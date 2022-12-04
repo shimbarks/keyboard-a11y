@@ -57,15 +57,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
         cumque esse autem quasi architecto soluta? Reiciendis, necessitatibus
         numquam, ducimus, explicabo dolore vitae consectetur nemo nobis ad
         maiores alias eaque? Obcaecati quaerat, possimus pariatur repudiandae
-        reprehenderit laborum quas voluptas molestias, fugit mollitia quam
-        nostrum repellendus omnis? Optio ipsam quaerat eos eligendi magni,
-        mollitia corrupti vero, impedit corporis a ipsa natus cupiditate autem
-        expedita voluptatibus non quod ea tempore saepe? Dolores corporis ipsam
-        labore dolor, expedita placeat? Eum saepe enim autem esse earum, quasi
-        libero et cumque explicabo, quibusdam iste blanditiis delectus labore,
-        facere sed rem distinctio odio? Ad vitae maiores nihil tempora nemo, ab
-        nobis. Porro ipsam odio beatae soluta asperiores? Iusto deleniti fugiat
-        officia neque facilis.
       </section>
     </aside>
   );
