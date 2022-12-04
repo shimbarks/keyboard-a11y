@@ -24,14 +24,14 @@ export const useModalInert = ({ modalRef, isOpen }: UseInertProps) => {
     );
 
     const allOtherModals = allModals.filter((modal) => {
-      return modal !== modalRef.current;
+      return modal !== modalRef.current && !modal.hasAttribute('inert');
     });
 
     const elementsToInert = [...allOtherModals];
 
     const rootElement = document.getElementById('root');
 
-    if (rootElement) {
+    if (rootElement && !rootElement.hasAttribute('inert')) {
       elementsToInert.push(rootElement);
     }
 
