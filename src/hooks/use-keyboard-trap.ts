@@ -1,5 +1,6 @@
-import { RefObject, useCallback, useEffect } from 'react';
+import { RefObject } from 'react';
 import { keyboardTrap } from '../utils/dom.utils';
+import { useKeydownListener } from './use-keydown-listener';
 
 export interface UseKeyboardTrapProps {
   isOpen: boolean;
@@ -10,20 +11,9 @@ export const useKeyboardTrap = ({
   isOpen,
   containerRef,
 }: UseKeyboardTrapProps): void => {
-  const keyListener = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.code === 'Tab') {
-        keyboardTrap(event, containerRef);
-      }
-    },
-    [containerRef],
-  );
-
-  useEffect(() => {
-    if (isOpen) {
-      containerRef.current?.addEventListener('keydown', keyListener);
-    } else {
-      containerRef.current?.removeEventListener('keydown', keyListener);
-    }
-  }, [isOpen, containerRef, keyListener]);
+  useKeydownListener({
+    containerRef,
+    isOpen,
+    keyListenerMap: { Tab: (e) => keyboardTrap(e, containerRef) },
+  });
 };
