@@ -31,6 +31,7 @@ const CustomModalComponent = (
       role="dialog"
       aria-modal="true"
       aria-label="modal-dialog"
+      aria-hidden={!isOpen}
     >
       <div className={`modal__box modal__box--${visibleMod}`}>
         <div className="modal__close-btn">{closeButton}</div>
