@@ -13,32 +13,34 @@ export function keyboardTrap(
   event: KeyboardEvent,
   containerRef: RefObject<HTMLElement>,
 ): void {
-  if (containerRef.current) {
-    const tabbableElements = getFocusableElements({
-      containerElement: containerRef.current,
-      tabbableOnly: true,
-    });
+  if (!containerRef.current) {
+    return;
+  }
 
-    if (!tabbableElements.length) {
-      event.preventDefault();
-      return;
-    }
+  const tabbableElements = getFocusableElements({
+    containerElement: containerRef.current,
+    tabbableOnly: true,
+  });
 
-    const firstElement = tabbableElements[0];
-    const lastElement = tabbableElements[tabbableElements.length - 1];
+  if (!tabbableElements.length) {
+    event.preventDefault();
+    return;
+  }
 
-    const isForwardFromLastElement =
-      !event.shiftKey && document.activeElement === lastElement;
-    const isBackwardFromFirstElement =
-      event.shiftKey && document.activeElement === firstElement;
+  const firstElement = tabbableElements[0];
+  const lastElement = tabbableElements[tabbableElements.length - 1];
 
-    if (isForwardFromLastElement) {
-      firstElement.focus();
-      event.preventDefault();
-    } else if (isBackwardFromFirstElement) {
-      lastElement.focus();
-      event.preventDefault();
-    }
+  const isForwardFromLastElement =
+    !event.shiftKey && document.activeElement === lastElement;
+  const isBackwardFromFirstElement =
+    event.shiftKey && document.activeElement === firstElement;
+
+  if (isForwardFromLastElement) {
+    firstElement.focus();
+    event.preventDefault();
+  } else if (isBackwardFromFirstElement) {
+    lastElement.focus();
+    event.preventDefault();
   }
 }
 
