@@ -34,12 +34,12 @@ export const App: React.FC = () => {
         <section className="app__modals-section">
           <section className="app__section">
             <h2>Native Modal Dialog</h2>
-            <i>Strict keyboard trap:</i>
+            <i>Strict focus trap:</i>
             <ModalOpener
               implementation="native modal dialog"
               keyboardTrap="strict"
             />
-            <i>Loose keyboard trap:</i>
+            <i>Loose focus trap:</i>
             <ModalOpener
               implementation="native modal dialog"
               keyboardTrap="loose"
@@ -47,9 +47,9 @@ export const App: React.FC = () => {
           </section>
           <section className="app__section">
             <h2>Custom Modal</h2>
-            <i>Strict keyboard trap:</i>
+            <i>Strict focus trap:</i>
             <ModalOpener implementation="custom modal" keyboardTrap="strict" />
-            <i>Loose keyboard trap:</i>
+            <i>Loose focus trap:</i>
             <ModalOpener implementation="custom modal" keyboardTrap="loose" />
           </section>
         </section>
