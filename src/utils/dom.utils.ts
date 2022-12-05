@@ -36,11 +36,11 @@ export function keyboardTrap(
     event.shiftKey && document.activeElement === firstElement;
 
   if (isForwardFromLastElement) {
+    event.preventDefault();
     firstElement.focus();
-    event.preventDefault();
   } else if (isBackwardFromFirstElement) {
-    lastElement.focus();
     event.preventDefault();
+    lastElement.focus();
   }
 }
 
