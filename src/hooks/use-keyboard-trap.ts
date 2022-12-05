@@ -7,13 +7,13 @@ export interface UseKeyboardTrapProps {
   containerRef: RefObject<HTMLElement>;
 }
 
-export const useKeyboardTrap = ({
+export function useKeyboardTrap({
   isOpen,
   containerRef,
-}: UseKeyboardTrapProps): void => {
+}: UseKeyboardTrapProps): void {
   useKeydownListener({
     containerRef,
     isOpen,
     keyListenerMap: { Tab: (e) => keyboardTrap(e, containerRef) },
   });
-};
+}

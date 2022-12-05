@@ -7,12 +7,12 @@ export interface UseOutsideClickProps<T> {
   persist?: boolean;
 }
 
-export const useOutsideClick = <T extends HTMLElement>({
+export function useOutsideClick<T extends HTMLElement>({
   ref,
   handler,
   excludeRefs,
   persist,
-}: UseOutsideClickProps<T>): void => {
+}: UseOutsideClickProps<T>): void {
   useEffect(() => {
     const listener = (event: Event) => {
       const isInnerClick = ref.current?.contains(event.target as Node);
@@ -43,4 +43,4 @@ export const useOutsideClick = <T extends HTMLElement>({
 
     return removeListener;
   }, [ref, handler, excludeRefs, persist]);
-};
+}

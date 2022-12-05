@@ -5,7 +5,7 @@ export interface UseInertProps {
   isOpen: boolean;
 }
 
-export const useModalInert = ({ modalRef, isOpen }: UseInertProps) => {
+export function useModalInert({ modalRef, isOpen }: UseInertProps) {
   const [inertedElements, setInertedElements] = useState<Element[]>([]);
 
   useEffect(() => {
@@ -47,4 +47,4 @@ export const useModalInert = ({ modalRef, isOpen }: UseInertProps) => {
       element.removeAttribute('inert');
     });
   };
-};
+}

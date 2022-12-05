@@ -7,11 +7,11 @@ export interface UseFocusOnOpenProps {
   customRef?: RefObject<HTMLElement>;
 }
 
-export const useFocusOnOpen = ({
+export function useFocusOnOpen({
   isOpen,
   containerRef,
   customRef,
-}: UseFocusOnOpenProps): void => {
+}: UseFocusOnOpenProps): void {
   useEffect(() => {
     if (isOpen) {
       let elementToFocus = customRef?.current;
@@ -30,4 +30,4 @@ export const useFocusOnOpen = ({
       elementToFocus?.focus();
     }
   }, [isOpen, containerRef, customRef]);
-};
+}

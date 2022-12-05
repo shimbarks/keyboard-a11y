@@ -11,13 +11,13 @@ export interface UseModalProps {
   onCloseFocusRef?: RefObject<HTMLElement>;
 }
 
-export const useModal = ({
+export function useModal({
   isOpen,
   onClose,
   modalRef,
   onOpenFocusRef,
   onCloseFocusRef,
-}: UseModalProps) => {
+}: UseModalProps) {
   // useFocusOnClose must be called before useFocusOnOpen, otherwise the focus would shift into the modal before
   // saving the active element which needs to gain focus upon modal close
   useFocusOnClose({
@@ -36,4 +36,4 @@ export const useModal = ({
     isOpen,
     keyListenerMap: { Escape: onClose },
   });
-};
+}

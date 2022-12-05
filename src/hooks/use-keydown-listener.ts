@@ -6,11 +6,11 @@ export interface UseKeydownListenerProps {
   keyListenerMap: { [key: string]: (e: any) => void };
 }
 
-export const useKeydownListener = ({
+export function useKeydownListener({
   containerRef,
   isOpen,
   keyListenerMap,
-}: UseKeydownListenerProps): void => {
+}: UseKeydownListenerProps): void {
   const keyListener = useCallback(
     (event: KeyboardEvent) => keyListenerMap[event.key]?.(event),
     [keyListenerMap],
@@ -23,4 +23,4 @@ export const useKeydownListener = ({
       containerRef.current?.removeEventListener('keydown', keyListener);
     }
   }, [isOpen, containerRef, keyListener]);
-};
+}

@@ -3,10 +3,10 @@ import { DependencyList, EffectCallback, useEffect, useRef } from 'react';
 /**
  * This hook is identical to useEffect, with the only exception of not being called during the initial render.
  */
-export const useUpdateEffect = (
+export function useUpdateEffect(
   effect: EffectCallback,
   dependencies?: DependencyList,
-): void => {
+): void {
   const didMountRef = useRef(false);
 
   useEffect(() => {
@@ -16,4 +16,4 @@ export const useUpdateEffect = (
       didMountRef.current = true;
     }
   }, dependencies);
-};
+}

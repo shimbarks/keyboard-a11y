@@ -5,10 +5,10 @@ export interface UseFocusOnCloseProps {
   customRef?: RefObject<HTMLElement>;
 }
 
-export const useFocusOnClose = ({
+export function useFocusOnClose({
   isOpen,
   customRef,
-}: UseFocusOnCloseProps): void => {
+}: UseFocusOnCloseProps): void {
   const openerRef: MutableRefObject<HTMLElement | null> =
     useRef<HTMLElement>(null);
 
@@ -19,4 +19,4 @@ export const useFocusOnClose = ({
       (customRef ?? openerRef).current?.focus();
     }
   }, [isOpen, customRef]);
-};
+}

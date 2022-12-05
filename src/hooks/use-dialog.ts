@@ -9,12 +9,12 @@ export interface UseDialogProps {
   onCloseFocusRef?: RefObject<HTMLElement>;
 }
 
-export const useDialog = ({
+export function useDialog({
   isOpen,
   dialogRef,
   onOpenFocusRef,
   onCloseFocusRef,
-}: UseDialogProps) => {
+}: UseDialogProps) {
   const [delayedIsOpen, setDelayedIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
@@ -41,4 +41,4 @@ export const useDialog = ({
     containerRef: dialogRef,
     customRef: onOpenFocusRef,
   });
-};
+}
