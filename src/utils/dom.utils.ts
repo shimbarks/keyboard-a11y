@@ -59,7 +59,6 @@ export function getFocusableElements({
     'input',
     'textarea',
     'select',
-    'details',
     'iframe',
     'embed',
     'object',
