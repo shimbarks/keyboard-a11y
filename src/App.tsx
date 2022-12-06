@@ -3,6 +3,7 @@ import './App.scss';
 import { Menu, MenuItem } from './components/menu/Menu';
 import { ModalOpener } from './components/modal-opener/ModalOpener';
 import { Sidebar } from './components/sidebar/Sidebar';
+import { SkipLink } from './components/skip-link/SkipLink';
 import { ToggleSidebar } from './components/toggle-sidebar/ToggleSidebar';
 
 export const App: React.FC = () => {
@@ -22,6 +23,8 @@ export const App: React.FC = () => {
 
   return (
     <main className={`app__main app__main--sidebar-${sidebarMod}`}>
+      <SkipLink id="lorem">Skip to main content</SkipLink>
+
       <section className="app__section">
         <h2>Native Modal Dialog</h2>
         <i>Strict focus trap:</i>
@@ -57,6 +60,12 @@ export const App: React.FC = () => {
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
       />
+      <section id="lorem" className="app__lorem">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia enim
+        vero recusandae eligendi dolore saepe, aliquid harum nobis doloremque
+        quis vel molestias magnam! Iste numquam nam quam mollitia consequuntur
+        repellat.
+      </section>
     </main>
   );
 };

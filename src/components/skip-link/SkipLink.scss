@@ -1,0 +1,14 @@
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transition: transform 0.15s ease-out;
+
+  &:focus {
+    transform: translate(-50%, 0);
+  }
+
+  &:not(:focus) {
+    transform: translate(-50%, -100%);
+  }
+}
