@@ -44,6 +44,9 @@ export function keyboardTrap(
   }
 }
 
+/**
+ * based on https://zellwk.com/blog/keyboard-focusable-elements/
+ */
 export function getFocusableElements({
   containerElement,
   tabbableOnly,
