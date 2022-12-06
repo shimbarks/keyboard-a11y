@@ -15,11 +15,11 @@ export const TruncableText: React.FC<TruncableTextProps> = ({
   useAutoOverflow(ref);
 
   return (
-    <div className={`truncable-text-container ${className ?? ''}`}>
-      <div ref={ref} className="truncable-text">
+    <div className={`truncable ${className ?? ''}`}>
+      <div ref={ref} className="truncable__text">
         {children}
       </div>
-      <div className="truncable-text__tooltip">{children}</div>
+      <div className="truncable__tooltip">{children}</div>
     </div>
   );
 };
