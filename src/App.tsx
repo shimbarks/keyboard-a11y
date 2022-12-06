@@ -21,46 +21,42 @@ export const App: React.FC = () => {
   const sidebarMod = isSidebarOpen ? 'open' : 'closed';
 
   return (
-    <>
-      <main className={`app__main app__main--sidebar-${sidebarMod}`}>
-        <ToggleSidebar
-          isSidebarOpen={isSidebarOpen}
-          setIsSidebarOpen={setIsSidebarOpen}
+    <main className={`app__main app__main--sidebar-${sidebarMod}`}>
+      <section className="app__section">
+        <h2>Native Modal Dialog</h2>
+        <i>Strict focus trap:</i>
+        <ModalOpener
+          implementation="native modal dialog"
+          keyboardTrap="strict"
         />
-        <Sidebar
-          isSidebarOpen={isSidebarOpen}
-          setIsSidebarOpen={setIsSidebarOpen}
+        <i>Loose focus trap:</i>
+        <ModalOpener
+          implementation="native modal dialog"
+          keyboardTrap="loose"
         />
-        <section className="app__modals-section">
-          <section className="app__section">
-            <h2>Native Modal Dialog</h2>
-            <i>Strict focus trap:</i>
-            <ModalOpener
-              implementation="native modal dialog"
-              keyboardTrap="strict"
-            />
-            <i>Loose focus trap:</i>
-            <ModalOpener
-              implementation="native modal dialog"
-              keyboardTrap="loose"
-            />
-          </section>
-          <section className="app__section">
-            <h2>Custom Modal</h2>
-            <i>Strict focus trap:</i>
-            <ModalOpener implementation="custom modal" keyboardTrap="strict" />
-            <i>Loose focus trap:</i>
-            <ModalOpener implementation="custom modal" keyboardTrap="loose" />
-          </section>
-        </section>
-        <section className="app__section">
-          <h2>Menu:</h2>
-          <Menu label="Open Menu" items={menuItems} />
-          <a className="app__fake-link" href="#">
-            Fake Link
-          </a>
-        </section>
-      </main>
-    </>
+      </section>
+      <section className="app__section">
+        <h2>Custom Modal</h2>
+        <i>Strict focus trap:</i>
+        <ModalOpener implementation="custom modal" keyboardTrap="strict" />
+        <i>Loose focus trap:</i>
+        <ModalOpener implementation="custom modal" keyboardTrap="loose" />
+      </section>
+      <section className="app__section">
+        <h2>Menu:</h2>
+        <Menu label="Open Menu" items={menuItems} />
+        <a className="app__fake-link" href="#">
+          Fake Link
+        </a>
+      </section>
+      <ToggleSidebar
+        isSidebarOpen={isSidebarOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
+      <Sidebar
+        isSidebarOpen={isSidebarOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
+    </main>
   );
 };

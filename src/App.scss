@@ -6,10 +6,8 @@ $sidebar-width: 300px;
     position: relative;
     padding: 3rem;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 4rem;
     transition: width $sidebar-transition;
 
@@ -22,15 +20,10 @@ $sidebar-width: 300px;
     }
   }
 
-  &__modals-section {
-    display: flex;
-    gap: 4rem;
-  }
-
   &__section {
+    padding: 1rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
     gap: 1rem;
   }
