@@ -2,13 +2,13 @@ import React, { ReactNode } from 'react';
 import './SkipLink.scss';
 
 export interface SkipLinkProps {
-  id: string;
+  skipToId: string;
   children?: ReactNode;
 }
 
-export const SkipLink: React.FC<SkipLinkProps> = ({ id, children }) => {
+export const SkipLink: React.FC<SkipLinkProps> = ({ skipToId, children }) => {
   return (
-    <a href={`#${id}`} className="skip-link">
+    <a href={`#${skipToId}`} className="skip-link">
       {children}
     </a>
   );

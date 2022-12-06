@@ -23,7 +23,7 @@ export const App: React.FC = () => {
 
   return (
     <main className={`app__main app__main--sidebar-${sidebarMod}`}>
-      <SkipLink id="lorem">Skip to main content</SkipLink>
+      <SkipLink skipToId="main-content">Skip to main content</SkipLink>
 
       <section className="app__section">
         <h2>Native Modal Dialog</h2>
@@ -60,7 +60,7 @@ export const App: React.FC = () => {
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
       />
-      <section id="lorem" className="app__lorem">
+      <section id="main-content" className="app__lorem">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia enim
         vero recusandae eligendi dolore saepe, aliquid harum nobis doloremque
         quis vel molestias magnam! Iste numquam nam quam mollitia consequuntur
