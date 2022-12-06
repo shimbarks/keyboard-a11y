@@ -4,11 +4,13 @@
   left: 50%;
   transition: transform 0.15s ease-out;
 
+  // when not focused, the link is hidden:
   &:not(:focus) {
-    transform: translate(-50%, -100%); // hidden
+    transform: translate(-50%, -100%);
   }
 
+  // when focused, the link becomes visible:
   &:focus {
-    transform: translate(-50%, 0); // visible
+    transform: translate(-50%, 0);
   }
 }
