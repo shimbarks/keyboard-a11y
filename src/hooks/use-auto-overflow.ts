@@ -5,11 +5,7 @@ export function useAutoOverflow(ref: RefObject<HTMLElement>) {
   const keyListener = useCallback(
     (event: KeyboardEvent) => {
       if (event.key === 'Tab' && ref.current) {
-        if (isOverflown(ref.current)) {
-          ref.current.setAttribute('tabindex', '0');
-        } else {
-          ref.current.removeAttribute('tabindex');
-        }
+        ref.current.tabIndex = isOverflown(ref.current) ? 0 : -1;
       }
     },
     [ref],
