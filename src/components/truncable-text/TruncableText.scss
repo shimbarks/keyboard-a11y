@@ -8,19 +8,13 @@
   }
 
   &__tooltip {
-    position: absolute;
-    top: -100%;
-    background-color: black;
-    color: white;
-    border-radius: 4px;
-    padding: 0.4em;
     visibility: hidden;
     opacity: 0;
-    transition: 0.2s ease-in-out;
   }
 
   &:hover,
   &:focus-within {
+    // show the tooltip on hover/focus only if tabindex was set to 0 by useAutoOverflow hook due to an overflow:
     .truncable__text[tabindex='0'] {
       + .truncable__tooltip {
         visibility: visible;
