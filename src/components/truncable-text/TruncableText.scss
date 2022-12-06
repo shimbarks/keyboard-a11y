@@ -1,0 +1,32 @@
+.truncable-text-container {
+  position: relative;
+}
+
+.truncable-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.truncable-text__tooltip {
+  position: absolute;
+  top: -100%;
+  background-color: white;
+  border-radius: 4px;
+  padding: 0.4em;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.2s ease-in-out;
+}
+
+.truncable-text-container {
+  &:hover,
+  &:focus-within {
+    .truncable-text[tabindex='0'] {
+      + .truncable-text__tooltip {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+}

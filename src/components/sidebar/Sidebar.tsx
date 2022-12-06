@@ -1,7 +1,28 @@
 import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import { useAutoOverflow } from '../../hooks/use-auto-overflow';
 import { useKeydownListener } from '../../hooks/use-keydown-listener';
+import { TruncableText } from '../truncable-text/TruncableText';
 import './Sidebar.scss';
+
+const songList: string[] = [
+  `Come Together`,
+  `Something`,
+  `Maxwell's Silver Hammer`,
+  `Oh! Darling`,
+  `Octopus's Garden`,
+  `I Want You (She's So Heavy)`,
+  `Here Comes the Sun`,
+  `Because`,
+  `You Never Give Me Your Money`,
+  `Sun King`,
+  `Mean Mr. Mustard`,
+  `Polythene Pam`,
+  `She Came In Through the Bathroom Window`,
+  `Golden Slumbers`,
+  `Carry That Weight`,
+  `The End`,
+  `Her Majesty`,
+];
 
 export interface SidebarProps {
   isSidebarOpen: boolean;
@@ -13,7 +34,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   setIsSidebarOpen,
 }) => {
   const sidebarRef = useRef<HTMLElement>(null);
-  const loremRef = useRef<HTMLElement>(null);
+  const ulRef = useRef<HTMLUListElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const stateMod = isSidebarOpen ? 'open' : 'closed';
 
@@ -29,7 +50,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     }
   }, [isSidebarOpen]);
 
-  useAutoOverflow(loremRef);
+  useAutoOverflow(ulRef);
 
   return (
     <aside ref={sidebarRef} className={`sidebar sidebar--${stateMod}`}>
@@ -43,21 +64,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
       >
         X
       </button>
-      <section ref={loremRef} className="sidebar__lorem">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa
-        delectus, sit beatae excepturi cum saepe sint maiores. Rem at optio
-        minus voluptates itaque. Quo, aliquam modi? A nihil sit maiores ut
-        facere dolorem omnis tempora dolorum quas, nemo eveniet eius
-        necessitatibus. Fugit dicta nesciunt sapiente sunt similique aliquid
-        placeat quas assumenda excepturi maiores aliquam ullam molestias, sed
-        veniam facere alias dignissimos tenetur et adipisci, quam enim dolores!
-        Nesciunt delectus animi possimus quo voluptatum omnis nam impedit nemo,
-        assumenda eaque dolorum dignissimos vero optio recusandae repellat,
-        incidunt exercitationem enim, commodi aut necessitatibus. Maiores ipsam
-        cumque esse autem quasi architecto soluta? Reiciendis, necessitatibus
-        numquam, ducimus, explicabo dolore vitae consectetur nemo nobis ad
-        maiores alias eaque? Obcaecati quaerat, possimus pariatur repudiandae
-      </section>
+      <h2 className="sidebar__heading">Abbey Road</h2>
+      <ul ref={ulRef} className="sidebar__song-list">
+        {songList.map((song) => (
+          <li key={song} className="sidebar__song">
+            <TruncableText>{song}</TruncableText>
+          </li>
+        ))}
+      </ul>
     </aside>
   );
 };
