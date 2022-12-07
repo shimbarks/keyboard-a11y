@@ -16,4 +16,10 @@ export function useUpdateEffect(
       didMountRef.current = true;
     }
   }, dependencies);
+
+  useEffect(() => {
+    return () => {
+      didMountRef.current = false;
+    };
+  }, []);
 }
