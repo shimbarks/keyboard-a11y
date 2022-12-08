@@ -56,7 +56,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <aside ref={sidebarRef} className={`sidebar sidebar--${stateMod}`}>
       <button
         type="button"
-        className={`sidebar__close-button sidebar__close-button--${stateMod}`}
+        className={`x-button sidebar__close-button sidebar__close-button--${stateMod}`}
         ref={closeBtnRef}
         aria-label="close side bar"
         onClick={() => setIsSidebarOpen(false)}

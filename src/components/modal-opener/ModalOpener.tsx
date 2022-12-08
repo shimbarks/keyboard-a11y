@@ -21,6 +21,7 @@ export const ModalOpener: React.FC<ModalOpenerProps> = ({
 
   const firstCloseButtonElement = (
     <button
+      className="x-button"
       ref={firstCloseButtonRef}
       type="button"
       onClick={() => setFirstModalVisible(false)}
@@ -30,14 +31,18 @@ export const ModalOpener: React.FC<ModalOpenerProps> = ({
   );
 
   const secondCloseButtonElement = (
-    <button type="button" onClick={() => setSecondModalVisible(false)}>
+    <button
+      className="x-button"
+      type="button"
+      onClick={() => setSecondModalVisible(false)}
+    >
       X
     </button>
   );
 
   const firstModalContent = (
     <>
-      <header>My First Modal</header>
+      <header className="modal__header">My First Modal</header>
       <div>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, in
         beatae eos distinctio debitis qui magni mollitia quasi doloribus est
@@ -59,7 +64,7 @@ export const ModalOpener: React.FC<ModalOpenerProps> = ({
 
   const secondModalContent = (
     <>
-      <header>My Second Modal</header>
+      <header className="modal__header">My Second Modal</header>
       <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
       <footer className="modal__footer">
         <a href="#">Fake Link 1</a>
