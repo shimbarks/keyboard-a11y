@@ -1,0 +1,65 @@
+@use '../../index.scss' as *;
+
+$sidebar-transition: 0.5s ease-out;
+$hamburger-bar-width: 2px;
+$hamburger-bar-gap: 8px;
+$hamburger-color: $att-blue;
+
+.hamburger {
+  &,
+  &__meat,
+  &::before,
+  &::after {
+    transition: $sidebar-transition;
+  }
+
+  position: absolute;
+  top: 1em;
+  right: 2em;
+  padding: 4px;
+  border: none;
+  background-color: transparent;
+  color: $hamburger-color;
+  display: flex;
+  flex-direction: column;
+  gap: $hamburger-bar-gap;
+
+  &--closed {
+    transition-property: opacity;
+  }
+
+  &--open {
+    opacity: 0;
+    visibility: hidden;
+    transition-property: opacity, visibility;
+
+    &::before {
+      transform: translateX(-10px);
+    }
+
+    &::after {
+      transform: translateX(-40px);
+      transition-delay: 0.15s;
+    }
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    height: $hamburger-bar-width;
+    width: 100%;
+    background-color: $hamburger-color;
+  }
+
+  &__meat {
+    transition-property: transform;
+    background-color: $hamburger-color;
+    width: 28px;
+    height: $hamburger-bar-width;
+
+    &--open {
+      transform: translateX(-20px);
+      transition-delay: 0.1s;
+    }
+  }
+}

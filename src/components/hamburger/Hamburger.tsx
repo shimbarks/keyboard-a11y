@@ -1,13 +1,13 @@
 import React, { Dispatch, SetStateAction, useRef } from 'react';
 import { useUpdateEffect } from '../../hooks/use-update-effect';
-import './ToggleSidebar.scss';
+import './Hamburger.scss';
 
-export interface ToggleSidebarProps {
+export interface HamburgerProps {
   isSidebarOpen: boolean;
   setIsSidebarOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export const ToggleSidebar: React.FC<ToggleSidebarProps> = ({
+export const Hamburger: React.FC<HamburgerProps> = ({
   isSidebarOpen,
   setIsSidebarOpen,
 }) => {
@@ -23,14 +23,12 @@ export const ToggleSidebar: React.FC<ToggleSidebarProps> = ({
   return (
     <button
       type="button"
-      className={`toggle-sidebar__button toggle-sidebar__button--${stateMod}`}
+      className={`hamburger hamburger--${stateMod}`}
       ref={buttonRef}
       aria-label="open menu"
       onClick={() => setIsSidebarOpen((open) => !open)}
     >
-      <div
-        className={`toggle-sidebar__hamburger toggle-sidebar__hamburger--${stateMod}`}
-      ></div>
+      <div className={`hamburger__meat hamburger__meat--${stateMod}`}></div>
     </button>
   );
 };

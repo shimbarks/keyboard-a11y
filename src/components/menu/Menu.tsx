@@ -54,6 +54,7 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
   };
 
   const handleArrowKeydown = (event: any, direction: 'up' | 'down') => {
+    event.preventDefault();
     const index = +event.target.id.slice(ITEM_ID_PREFIX.length);
     const nextIndex = getNextItemIndex(index, direction);
     const nextItemQuery = `#${ITEM_ID_PREFIX}${nextIndex}`;
@@ -102,6 +103,7 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
   return (
     <div className="menu">
       <button
+        className="att-button"
         ref={openerRef}
         aria-haspopup={true}
         aria-controls={popupId}

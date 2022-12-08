@@ -1,3 +1,5 @@
+@use '../../index.scss' as *;
+
 $popup-transition: 0.2s ease-out;
 
 .menu {
@@ -37,6 +39,8 @@ $popup-transition: 0.2s ease-out;
   }
 
   &__item-btn {
+    font-family: $font-medium;
+    color: $att-blue;
     width: 100%;
     border: none;
     padding: 18px;

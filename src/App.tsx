@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './App.scss';
+import { Hamburger } from './components/hamburger/Hamburger';
 import { Menu, MenuItem } from './components/menu/Menu';
 import { ModalOpener } from './components/modal-opener/ModalOpener';
 import { Sidebar } from './components/sidebar/Sidebar';
 import { SkipLink } from './components/skip-link/SkipLink';
-import { ToggleSidebar } from './components/toggle-sidebar/ToggleSidebar';
 
 export const App: React.FC = () => {
   const menuItems: MenuItem[] = [
@@ -52,7 +52,7 @@ export const App: React.FC = () => {
           Fake Link
         </a>
       </section>
-      <ToggleSidebar
+      <Hamburger
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
       />

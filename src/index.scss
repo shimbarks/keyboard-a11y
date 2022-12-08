@@ -1,3 +1,7 @@
+$att-blue: #0057b8;
+$font-regular: font-regular, sans-serif;
+$font-medium: font-medium, sans-serif;
+
 /* Basic styles */
 
 *,
@@ -15,7 +19,8 @@ body,
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: $font-regular;
+  color: $att-blue;
 }
 
 a,
@@ -48,6 +53,39 @@ h4,
 h5,
 h6 {
   margin: 0;
+}
+
+/* Typography */
+
+@font-face {
+  font-family: 'font-regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('./assets/fonts/ATTAleckSans_W_Rg.woff2') format('woff2'),
+    url('./assets/fonts/ATTAleckSans_W_Rg.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'font-medium';
+  font-style: normal;
+  font-weight: normal;
+  src: url('./assets/fonts/ATTAleckSans_W_Md.woff2') format('woff2'),
+    url('./assets/fonts/ATTAleckSans_W_Md.woff') format('woff');
+}
+
+/* Button styles */
+.att-button {
+  background-color: $att-blue;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 14px 18px;
+  font-size: 16px;
+  font-family: $font-medium;
+
+  &:focus-visible {
+    outline-offset: -8px;
+  }
 }
 
 /* Focus styles */
