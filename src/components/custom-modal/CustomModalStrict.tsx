@@ -1,5 +1,5 @@
 import React, { RefObject, useRef } from 'react';
-import { useKeyboardTrap } from '../../hooks/use-keyboard-trap';
+import { useFocusTrap } from '../../hooks/use-focus-trap';
 import { useModal } from '../../hooks/use-modal';
 import { CustomModal, CustomModalProps } from './CustomModal';
 
@@ -14,7 +14,7 @@ export const CustomModalStrict: React.FC<CustomModalProps> = (props) => {
     onCloseFocusRef: props.onCloseFocusRef,
   });
 
-  useKeyboardTrap({
+  useFocusTrap({
     isOpen: props.isOpen,
     containerRef: modalRef,
   });

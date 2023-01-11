@@ -1,19 +1,19 @@
 import { RefObject } from 'react';
-import { keyboardTrap } from '../utils/dom.utils';
+import { focusTrap } from '../utils/dom.utils';
 import { useKeydownListener } from './use-keydown-listener';
 
-export interface UseKeyboardTrapProps {
+export interface UseFocusTrapProps {
   isOpen: boolean;
   containerRef: RefObject<HTMLElement>;
 }
 
-export function useKeyboardTrap({
+export function useFocusTrap({
   isOpen,
   containerRef,
-}: UseKeyboardTrapProps): void {
+}: UseFocusTrapProps): void {
   useKeydownListener({
     containerRef,
     isOpen,
-    keyListenerMap: { Tab: (e) => keyboardTrap(e, containerRef) },
+    keyListenerMap: { Tab: (e) => focusTrap(e, containerRef) },
   });
 }

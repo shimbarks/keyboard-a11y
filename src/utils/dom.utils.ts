@@ -9,7 +9,7 @@ export function isOverflown({
   return scrollHeight > clientHeight || scrollWidth > clientWidth;
 }
 
-export function keyboardTrap(
+export function focusTrap(
   event: KeyboardEvent,
   containerRef: RefObject<HTMLElement>,
 ): void {

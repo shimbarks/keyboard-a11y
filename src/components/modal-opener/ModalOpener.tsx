@@ -7,12 +7,12 @@ import './ModalOpener.scss';
 
 export interface ModalOpenerProps {
   implementation: 'native modal dialog' | 'custom modal';
-  keyboardTrap: 'strict' | 'loose';
+  focusTrap: 'strict' | 'loose';
 }
 
 export const ModalOpener: React.FC<ModalOpenerProps> = ({
   implementation,
-  keyboardTrap,
+  focusTrap,
 }) => {
   const [firstModalVisible, setFirstModalVisible] = useState<boolean>(false);
   const [secondModalVisible, setSecondModalVisible] = useState<boolean>(false);
@@ -91,7 +91,7 @@ export const ModalOpener: React.FC<ModalOpenerProps> = ({
 
   const renderModal = (): JSX.Element => {
     if (implementation === 'native modal dialog') {
-      return keyboardTrap === 'strict' ? (
+      return focusTrap === 'strict' ? (
         <>
           <DialogModalStrict {...firstModalProps} />
           <DialogModalStrict {...secondModalProps} />
@@ -103,7 +103,7 @@ export const ModalOpener: React.FC<ModalOpenerProps> = ({
         </>
       );
     } else {
-      return keyboardTrap === 'strict' ? (
+      return focusTrap === 'strict' ? (
         <>
           <CustomModalStrict {...firstModalProps} />
           <CustomModalStrict {...secondModalProps} />

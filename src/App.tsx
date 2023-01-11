@@ -30,20 +30,20 @@ export const App: React.FC = () => {
         <i>Strict focus trap:</i>
         <ModalOpener
           implementation="native modal dialog"
-          keyboardTrap="strict"
+          focusTrap="strict"
         />
         <i>Loose focus trap:</i>
         <ModalOpener
           implementation="native modal dialog"
-          keyboardTrap="loose"
+          focusTrap="loose"
         />
       </section>
       <section className="app__section">
         <h2>Custom Modal</h2>
         <i>Strict focus trap:</i>
-        <ModalOpener implementation="custom modal" keyboardTrap="strict" />
+        <ModalOpener implementation="custom modal" focusTrap="strict" />
         <i>Loose focus trap:</i>
-        <ModalOpener implementation="custom modal" keyboardTrap="loose" />
+        <ModalOpener implementation="custom modal" focusTrap="loose" />
       </section>
       <section className="app__section">
         <h2>Menu:</h2>
