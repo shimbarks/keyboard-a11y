@@ -13,21 +13,23 @@ export function useFocusOnOpen({
   customRef,
 }: UseFocusOnOpenProps): void {
   useEffect(() => {
-    if (isOpen) {
-      let elementToFocus = customRef?.current;
+    if (!isOpen) {
+      return;
+    }
 
-      if (!elementToFocus && containerRef.current) {
-        elementToFocus = getFocusableElements({
-          containerElement: containerRef.current,
-        })[0];
+    if (customRef?.current) {
+      customRef.current.focus();
+    } else if (containerRef.current) {
+      const firstFocusableElement = getFocusableElements({
+        containerElement: containerRef.current,
+      })[0];
 
-        if (!elementToFocus) {
-          containerRef.current.tabIndex = -1;
-          elementToFocus = containerRef.current;
-        }
+      if (firstFocusableElement) {
+        firstFocusableElement.focus();
+      } else {
+        containerRef.current.tabIndex = -1;
+        containerRef.current.focus();
       }
-
-      elementToFocus?.focus();
     }
   }, [isOpen, containerRef, customRef]);
 }
