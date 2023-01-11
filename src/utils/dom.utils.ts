@@ -96,6 +96,7 @@ export function getElementsToInert(
     document.getElementById('modal-root')?.children ?? [],
   );
 
+  // filter out the current modal and modals that are already inerted
   const allOtherModals = allModals.filter((modal) => {
     return modal !== modalRef.current && !modal.hasAttribute('inert');
   });
