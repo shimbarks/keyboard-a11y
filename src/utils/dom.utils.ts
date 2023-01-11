@@ -88,3 +88,25 @@ export function getFocusableElements({
 
   return focusableElements;
 }
+
+export function getElementsToInert(
+  modalRef: RefObject<HTMLElement>,
+): Element[] {
+  const allModals = Array.from(
+    document.getElementById('modal-root')?.children ?? [],
+  );
+
+  const allOtherModals = allModals.filter((modal) => {
+    return modal !== modalRef.current && !modal.hasAttribute('inert');
+  });
+
+  const elementsToInert = [...allOtherModals];
+
+  const rootElement = document.getElementById('root');
+
+  if (rootElement && !rootElement.hasAttribute('inert')) {
+    elementsToInert.push(rootElement);
+  }
+
+  return elementsToInert;
+}
