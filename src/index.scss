@@ -1,4 +1,4 @@
-$att-blue: #0057b8;
+$blue: #0057b8;
 $font-regular: font-regular, sans-serif;
 $font-medium: font-medium, sans-serif;
 
@@ -20,7 +20,7 @@ body,
 body {
   margin: 0;
   font-family: $font-regular;
-  color: $att-blue;
+  color: $blue;
 }
 
 a,
@@ -79,8 +79,8 @@ i {
 
 /* Button styles */
 
-.att-button {
-  background-color: $att-blue;
+.primary-button {
+  background-color: $blue;
   color: white;
   border: none;
   border-radius: 3px;
@@ -95,7 +95,7 @@ i {
 
 .x-button {
   background-color: transparent;
-  color: $att-blue;
+  color: $blue;
   border: none;
   font-size: 18px;
   font-weight: bold;

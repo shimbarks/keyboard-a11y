@@ -53,7 +53,7 @@ export const ModalOpener: React.FC<ModalOpenerProps> = ({
         <a href="#">Fake Link</a>
         <button
           ref={openSecondModalButtonRef}
-          className="att-button"
+          className="primary-button"
           onClick={() => setSecondModalVisible(true)}
         >
           Open Second Modal
@@ -119,7 +119,10 @@ export const ModalOpener: React.FC<ModalOpenerProps> = ({
 
   return (
     <div className="section">
-      <button className="att-button" onClick={() => setFirstModalVisible(true)}>
+      <button
+        className="primary-button"
+        onClick={() => setFirstModalVisible(true)}
+      >
         Open First Modal
       </button>
       {renderModal()}

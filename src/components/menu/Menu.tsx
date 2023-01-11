@@ -103,7 +103,7 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
   return (
     <div className="menu">
       <button
-        className="att-button"
+        className="primary-button"
         ref={openerRef}
         aria-haspopup={true}
         aria-controls={popupId}
