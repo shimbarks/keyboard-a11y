@@ -16,6 +16,10 @@ export const App: React.FC = () => {
       text: 'dolor sit amet',
       onClick: () => console.log('Hello Dolor!'),
     },
+    {
+      text: 'consectetur adipisicing elit',
+      onClick: () => console.log('Hello Consectetur!'),
+    },
   ];
 
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
@@ -28,15 +32,9 @@ export const App: React.FC = () => {
       <section className="app__section">
         <h2>Native Modal Dialog</h2>
         <i>Strict focus trap:</i>
-        <ModalOpener
-          implementation="native modal dialog"
-          focusTrap="strict"
-        />
+        <ModalOpener implementation="native modal dialog" focusTrap="strict" />
         <i>Loose focus trap:</i>
-        <ModalOpener
-          implementation="native modal dialog"
-          focusTrap="loose"
-        />
+        <ModalOpener implementation="native modal dialog" focusTrap="loose" />
       </section>
       <section className="app__section">
         <h2>Custom Modal</h2>
