@@ -13,7 +13,7 @@ export function useFocusTrap({
 }: UseFocusTrapProps): void {
   useKeydownListener({
     containerRef,
-    isOpen,
+    listen: isOpen,
     keyListenerMap: { Tab: (e) => focusTrap(e, containerRef) },
   });
 }

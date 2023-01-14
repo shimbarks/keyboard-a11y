@@ -72,7 +72,7 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
 
   useKeydownListener({
     containerRef: popupRef,
-    isOpen,
+    listen: isOpen,
     keyListenerMap: {
       Escape: () => setIsOpen(false),
       Tab: handleTabKeydown,

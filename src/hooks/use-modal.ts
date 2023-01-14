@@ -33,7 +33,7 @@ export function useModal({
 
   useKeydownListener({
     containerRef: modalRef,
-    isOpen,
+    listen: isOpen,
     keyListenerMap: { Escape: onClose },
   });
 }

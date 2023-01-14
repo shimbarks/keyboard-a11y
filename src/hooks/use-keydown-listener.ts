@@ -1,26 +1,31 @@
 import { RefObject, useCallback, useEffect } from 'react';
 
 export interface UseKeydownListenerProps {
-  containerRef: RefObject<HTMLElement>;
-  isOpen: boolean;
+  containerRef?: RefObject<HTMLElement | Document>;
+  listen: boolean;
   keyListenerMap: { [key: string]: (e: any) => void };
 }
 
 export function useKeydownListener({
-  containerRef,
-  isOpen,
+  containerRef = { current: document }, // if no ref is passed, we'll listen on the document element
+  listen,
   keyListenerMap,
 }: UseKeydownListenerProps): void {
   const keyListener = useCallback(
-    (event: KeyboardEvent) => keyListenerMap[event.key]?.(event),
+    (event: Event) => keyListenerMap[(event as KeyboardEvent).key]?.(event),
     [keyListenerMap],
   );
 
   useEffect(() => {
-    if (isOpen) {
-      containerRef.current?.addEventListener('keydown', keyListener);
-    } else {
-      containerRef.current?.removeEventListener('keydown', keyListener);
+    let containerElement: HTMLElement | Document | undefined;
+
+    if (listen && containerRef.current) {
+      containerElement = containerRef.current;
+      containerElement.addEventListener('keydown', keyListener);
     }
-  }, [isOpen, containerRef, keyListener]);
+
+    return () => {
+      containerElement?.removeEventListener('keydown', keyListener);
+    };
+  }, [listen, containerRef, keyListener]);
 }

@@ -40,7 +40,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   useKeydownListener({
     containerRef: sidebarRef,
-    isOpen: isSidebarOpen,
+    listen: isSidebarOpen,
     keyListenerMap: { Escape: () => setIsSidebarOpen(false) },
   });
 

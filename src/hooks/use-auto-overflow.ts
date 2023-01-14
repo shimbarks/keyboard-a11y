@@ -1,5 +1,6 @@
 import { RefObject, useCallback, useEffect } from 'react';
 import { isOverflown } from '../utils/dom.utils';
+import { useKeydownListener } from './use-keydown-listener';
 
 export function useAutoOverflow(ref: RefObject<HTMLElement>) {
   const setTabIndex = useCallback(() => {
@@ -13,20 +14,8 @@ export function useAutoOverflow(ref: RefObject<HTMLElement>) {
     setTabIndex();
   }, [setTabIndex]);
 
-  const keyListener = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key === 'Tab') {
-        setTabIndex();
-      }
-    },
-    [setTabIndex],
-  );
-
-  useEffect(() => {
-    document.addEventListener('keydown', keyListener);
-
-    return () => {
-      document.removeEventListener('keydown', keyListener);
-    };
-  }, [keyListener]);
+  useKeydownListener({
+    listen: true,
+    keyListenerMap: { Tab: setTabIndex },
+  });
 }
