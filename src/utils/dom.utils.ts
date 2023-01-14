@@ -34,6 +34,7 @@ export function focusTrap(
 
   const isForwardFromLastElement =
     !event.shiftKey && document.activeElement === lastElement;
+
   const isBackwardFromFirstElement =
     event.shiftKey && document.activeElement === firstElement;
 
