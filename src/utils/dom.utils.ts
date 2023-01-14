@@ -22,7 +22,9 @@ export function focusTrap(
     tabbableOnly: true,
   });
 
-  if (!tabbableElements.length) {
+  // if there's just one tabbable element or no tabbable elements at all,
+  // we simply leave the focus in its place:
+  if ([0, 1].includes(tabbableElements.length)) {
     event.preventDefault();
     return;
   }
