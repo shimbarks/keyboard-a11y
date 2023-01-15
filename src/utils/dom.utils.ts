@@ -73,7 +73,7 @@ export function getFocusableElements({
     'audio[controls]',
     'video[controls]',
     '[contenteditable]',
-    `[tabindex]${tabbableOnly ? ':not([tabindex="-1"])' : ''}`,
+    '[tabindex]',
   ];
 
   const potentiallyFocusableElements = Array.from(
@@ -89,7 +89,9 @@ export function getFocusableElements({
       getComputedStyle(element).visibility !== 'hidden',
   );
 
-  return focusableElements;
+  return tabbableOnly
+    ? focusableElements.filter((element) => element.tabIndex >= 0)
+    : focusableElements;
 }
 
 export function getElementsToInert(
