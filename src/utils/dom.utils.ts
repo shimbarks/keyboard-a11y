@@ -99,8 +99,8 @@ export function getElementsToInert(
     document.getElementById('modal-root')?.children ?? [],
   );
 
-  // filter out the current modal, modals that are already inerted, and hidden modals
-  const allOtherModals = allModals.filter((modal) => {
+  // filter out the current modal, modals that are already inerted, and hidden modals:
+  const allOtherActiveModals = allModals.filter((modal) => {
     return (
       modal !== modalRef.current &&
       !modal.hasAttribute('inert') &&
@@ -109,7 +109,7 @@ export function getElementsToInert(
     );
   });
 
-  const elementsToInert = [...allOtherModals];
+  const elementsToInert = [...allOtherActiveModals];
 
   const rootElement = document.getElementById('root');
 
