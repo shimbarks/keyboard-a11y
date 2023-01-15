@@ -27,11 +27,9 @@ export function useModalInert({ modalRef, isOpen }: UseInertProps) {
 
   useEffect(() => {
     if (isOpen) {
-      // in case the current modal got inerted by a different modal that is still open:
-      modalRef.current?.removeAttribute('inert');
       inert();
     }
-  }, [isOpen, modalRef, inert]);
+  }, [isOpen, inert]);
 
   // using 2 different calls to useEffect in order to avoid an infinite loop in which the inert function
   // changes inertedElements, which on its turn recreates the unInert function, which would have called the useEffect again
