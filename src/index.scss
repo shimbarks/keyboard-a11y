@@ -1,6 +1,4 @@
 $blue: #0057b8;
-$font-regular: font-regular, sans-serif;
-$font-medium: font-medium, sans-serif;
 
 /* Basic styles */
 
@@ -19,7 +17,9 @@ body,
 
 body {
   margin: 0;
-  font-family: $font-regular;
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
   color: $blue;
 }
 
@@ -59,22 +59,8 @@ i {
   font-size: 1.2em;
 }
 
-/* Typography */
-
-@font-face {
-  font-family: 'font-regular';
-  font-style: normal;
-  font-weight: normal;
-  src: url('./assets/fonts/ATTAleckSans_W_Rg.woff2') format('woff2'),
-    url('./assets/fonts/ATTAleckSans_W_Rg.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'font-medium';
-  font-style: normal;
-  font-weight: normal;
-  src: url('./assets/fonts/ATTAleckSans_W_Md.woff2') format('woff2'),
-    url('./assets/fonts/ATTAleckSans_W_Md.woff') format('woff');
+* {
+  font-family: inherit;
 }
 
 /* Button styles */
@@ -86,7 +72,6 @@ i {
   border-radius: 3px;
   padding: 14px 18px;
   font-size: 16px;
-  font-family: $font-medium;
 
   &:focus-visible {
     outline-offset: -8px;
@@ -99,7 +84,6 @@ i {
   border: none;
   font-size: 18px;
   font-weight: bold;
-  font-family: $font-medium;
 }
 
 /* Focus styles */
