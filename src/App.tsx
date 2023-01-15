@@ -44,8 +44,18 @@ export const App: React.FC = () => {
           <h2>Custom Modal</h2>
           <i>Strict focus trap:</i>
           <ModalOpener implementation="custom modal" focusTrap="strict" />
-          <i>Loose focus trap:</i>
-          <ModalOpener implementation="custom modal" focusTrap="loose" />
+          <i>Loose focus trap (inert):</i>
+          <ModalOpener
+            implementation="custom modal"
+            focusTrap="loose"
+            looseImplementation="inert"
+          />
+          <i>Loose focus trap (tabindex):</i>
+          <ModalOpener
+            implementation="custom modal"
+            focusTrap="loose"
+            looseImplementation="tabindex"
+          />
         </section>
         <section className="app__section">
           <h2>Menu:</h2>

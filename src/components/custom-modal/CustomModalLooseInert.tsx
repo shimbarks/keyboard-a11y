@@ -3,7 +3,7 @@ import { useModal } from '../../hooks/use-modal';
 import { useModalInert } from '../../hooks/use-modal-inert';
 import { CustomModal, CustomModalProps } from './CustomModal';
 
-export const CustomModalLoose: React.FC<CustomModalProps> = (props) => {
+export const CustomModalLooseInert: React.FC<CustomModalProps> = (props) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   // useModalInert must be called before useFocusOnClose (which is called within useModal) in order to
