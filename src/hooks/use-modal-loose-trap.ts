@@ -11,19 +11,19 @@ export function useModalLooseTrap({
   trap,
   unTrap,
 }: UseModalLooseTrapProps) {
-  const [disabledElements, setDisabledElements] = useState<Element[]>([]);
+  const [inactiveElements, setInactiveElements] = useState<Element[]>([]);
 
   useEffect(() => {
     if (isOpen) {
-      setDisabledElements(trap());
+      setInactiveElements(trap());
     }
   }, [isOpen, trap]);
 
-  // using 2 different calls to useEffect in order to avoid an infinite loop in which setDisabledElements
-  // changes disabledElements, which would have called the useEffect again
+  // using 2 different calls to useEffect in order to avoid an infinite loop in which setInactiveElements
+  // changes inactiveElements, which would have called the useEffect again
   useEffect(() => {
     if (!isOpen) {
-      unTrap(disabledElements);
+      unTrap(inactiveElements);
     }
-  }, [isOpen, unTrap, disabledElements]);
+  }, [isOpen, unTrap, inactiveElements]);
 }
