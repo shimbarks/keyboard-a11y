@@ -1,66 +1,78 @@
 $blue: #0057b8;
 
-/* Basic styles */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
-body,
-#root {
-  height: 100%;
-  overflow-x: hidden;
-}
-
-body {
-  margin: 0;
-  font-family: 'Merriweather Sans', sans-serif;
-  font-weight: 300;
-  line-height: 1.5;
-  color: $blue;
-}
-
-a,
-label,
-select,
-button,
-input[type='button'],
-input[type='reset'],
-input[type='submit'],
-input[type='radio'],
-input[type='checkbox'],
-[role='button'],
-[role='checkbox'],
-[role='radio'] {
-  &:not(:disabled) {
-    cursor: pointer;
+@layer base {
+  /* Basic styles */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
   }
-}
 
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+  html,
+  body,
+  #root {
+    height: 100%;
+    overflow-x: hidden;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-}
+  body {
+    margin: 0;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+    color: $blue;
+  }
 
-i {
-  font-size: 1.2em;
-}
+  a,
+  label,
+  select,
+  button,
+  input[type='button'],
+  input[type='reset'],
+  input[type='submit'],
+  input[type='radio'],
+  input[type='checkbox'],
+  [role='button'],
+  [role='checkbox'],
+  [role='radio'] {
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+  }
 
-* {
-  font-family: inherit;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+  }
+
+  i {
+    font-size: 1.2em;
+  }
+
+  * {
+    font-family: inherit;
+  }
+
+  /* Focus styles */
+
+  *:focus:not(:focus-visible) {
+    outline-color: transparent;
+  }
+
+  *:focus-visible {
+    outline: clamp(2px, 0.2em, 6px) solid currentColor;
+    outline-offset: 0.4em;
+  }
 }
 
 /* Button styles */
@@ -84,15 +96,4 @@ i {
   border: none;
   font-size: 18px;
   font-weight: bold;
-}
-
-/* Focus styles */
-
-*:focus:not(:focus-visible) {
-  outline-color: transparent;
-}
-
-*:focus-visible {
-  outline: clamp(2px, 0.2em, 6px) solid currentColor;
-  outline-offset: 0.4em;
 }
