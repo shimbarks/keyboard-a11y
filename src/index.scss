@@ -71,7 +71,7 @@ $blue: #0057b8;
 
   *:focus-visible {
     outline: clamp(2px, 0.2em, 6px) solid currentColor;
-    outline-offset: 0.4em;
+    outline-offset: min(0.4em, 8px);
   }
 }
 
